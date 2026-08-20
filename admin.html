@@ -741,9 +741,47 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">Description</label>
+                    <label class="block text-xs text-slate-400 mb-1">Description Paragraph</label>
                     <textarea id="modal-prod-desc" rows="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
                 </div>
+
+                <!-- Detailed Design & Technical Specifications -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                    <h5 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-ruler-combined text-elcardo-red"></i> Detailed Design & Engineering Specifications
+                    </h5>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Material & Thickness</label>
+                            <input type="text" id="modal-prod-material" placeholder="0.50mm - 0.60mm AZ150 Zinc-Alum" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Available Color Finishes</label>
+                            <input type="text" id="modal-prod-colors" placeholder="Caulfield Green, Slate Grey, Teak" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Max Opening Dimensions</label>
+                            <input type="text" id="modal-prod-dimensions" placeholder="Width up to 28ft | Height up to 22ft" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Operation & Access Mode</label>
+                            <input type="text" id="modal-prod-operation" placeholder="Remotes + Wi-Fi App + Manual Chain" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Recommended Applications</label>
+                            <input type="text" id="modal-prod-applications" placeholder="Warehouses, Factories, Garages" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Pricing / Rate Guide</label>
+                            <input type="text" id="modal-prod-priceguide" placeholder="From LKR 450/sq.ft" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs text-slate-400 mb-1">Warranty Term</label>
@@ -755,12 +793,12 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">Feature Badges (Comma-separated)</label>
+                    <label class="block text-xs text-slate-400 mb-1">Key Feature Badges (Comma-separated)</label>
                     <input type="text" id="modal-prod-features" placeholder="Silent Webbing, Auto-Reverse, Key Lock" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
                 </div>
                 <div class="pt-3 flex justify-end gap-2">
                     <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="product-modal">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Product</button>
+                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Product Specs</button>
                 </div>
             </form>
         </div>
@@ -1375,10 +1413,19 @@
             document.getElementById('modal-prod-img').value = p ? p.image : '';
             document.getElementById('modal-prod-preview').src = p ? (p.image || 'images/roller_door_standard.jpg') : 'images/roller_door_standard.jpg';
             document.getElementById('modal-prod-desc').value = p ? p.description : '';
+            
+            // Detailed Design Specifications
+            document.getElementById('modal-prod-material').value = p ? (p.material || '') : '';
+            document.getElementById('modal-prod-colors').value = p ? (p.availableColors || '') : '';
+            document.getElementById('modal-prod-dimensions').value = p ? (p.maxDimensions || '') : '';
+            document.getElementById('modal-prod-operation').value = p ? (p.operationMode || '') : '';
+            document.getElementById('modal-prod-applications').value = p ? (p.applications || '') : '';
+            document.getElementById('modal-prod-priceguide').value = p ? (p.priceGuide || '') : '';
+
             document.getElementById('modal-prod-warranty').value = p ? p.warranty : '10-Year Panel / 5-Year Motor';
             document.getElementById('modal-prod-motor').value = p ? p.motorSpecs : '';
             document.getElementById('modal-prod-features').value = p ? (p.features || []).join(', ') : '';
-            document.getElementById('prod-modal-title').textContent = p ? 'Edit Product' : 'Add New Product';
+            document.getElementById('prod-modal-title').textContent = p ? 'Edit Product & Specs' : 'Add New Product & Specs';
             modal.classList.remove('hidden');
         }
 
@@ -1393,23 +1440,52 @@
             const categoryName = document.getElementById('modal-prod-catname').value.trim();
             const image = document.getElementById('modal-prod-img').value.trim();
             const description = document.getElementById('modal-prod-desc').value.trim();
+            
+            // Detailed Specs
+            const material = document.getElementById('modal-prod-material').value.trim();
+            const availableColors = document.getElementById('modal-prod-colors').value.trim();
+            const maxDimensions = document.getElementById('modal-prod-dimensions').value.trim();
+            const operationMode = document.getElementById('modal-prod-operation').value.trim();
+            const applications = document.getElementById('modal-prod-applications').value.trim();
+            const priceGuide = document.getElementById('modal-prod-priceguide').value.trim();
+
             const warranty = document.getElementById('modal-prod-warranty').value.trim();
             const motorSpecs = document.getElementById('modal-prod-motor').value.trim();
             const features = document.getElementById('modal-prod-features').value.split(',').map(s => s.trim()).filter(Boolean);
 
+            const productData = { 
+                id: pId || ('prod-' + Date.now()), 
+                code, 
+                badge, 
+                name, 
+                category, 
+                categoryName, 
+                image, 
+                description, 
+                material, 
+                availableColors, 
+                maxDimensions, 
+                operationMode, 
+                applications, 
+                priceGuide, 
+                warranty, 
+                motorSpecs, 
+                features 
+            };
+
             if (pId) {
                 const idx = data.products.findIndex(x => x.id === pId);
                 if (idx !== -1) {
-                    data.products[idx] = { id: pId, code, badge, name, category, categoryName, image, description, warranty, motorSpecs, features };
+                    data.products[idx] = productData;
                 }
             } else {
-                data.products.push({ id: 'prod-' + Date.now(), code, badge, name, category, categoryName, image, description, warranty, motorSpecs, features });
+                data.products.push(productData);
             }
 
             saveSiteData(data);
             document.getElementById('product-modal').classList.add('hidden');
             renderAdminProducts(data.products);
-            showToast("Product saved successfully!");
+            showToast("Product & detailed specifications saved successfully!");
         });
 
         function renderAdminColors(colors) {
