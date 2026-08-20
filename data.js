@@ -502,6 +502,11 @@ const DEFAULT_DATA = {
         whatsappRaw: "94774402271",
         email: "info@shutter2000.lk",
         mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.530349487777!2d79.8808!3d6.8268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDknMzYuNSJOIDc5wrA1Mic1MC45IkU!5e0!3m2!1sen!2slk!4v1600000000000"
+    },
+    developerCredit: {
+        text: "Website Designed & Developed by Kanchana",
+        whatsapp: "+94 77 440 2271",
+        whatsappRaw: "94774402271"
     }
 };
 

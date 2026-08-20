@@ -274,6 +274,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Developer & Design Credit -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-code text-elcardo-red"></i> Website Developer / Designer Credit & WhatsApp
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Developer Credit Text</label>
+                                    <input type="text" id="dev-credit-inp-text" placeholder="Website Designed & Developed by Kanchana" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Developer WhatsApp Number (Display & Link)</label>
+                                    <input type="text" id="dev-credit-inp-phone" placeholder="+94 77 440 2271" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </section>
 
@@ -990,6 +1007,13 @@
             document.getElementById('cta-btntext-inp').value = cta.buttonText || '';
             document.getElementById('cta-btnlink-inp').value = cta.buttonLink || '';
 
+            // Developer Credit
+            const dev = data.developerCredit || {};
+            const devTextInp = document.getElementById('dev-credit-inp-text');
+            const devPhoneInp = document.getElementById('dev-credit-inp-phone');
+            if (devTextInp) devTextInp.value = dev.text || 'Website Designed & Developed by Kanchana';
+            if (devPhoneInp) devPhoneInp.value = dev.whatsapp || '+94 77 440 2271';
+
             // Render Dynamic Collections
             renderAdminSlides(data.heroSlides || []);
             renderAdminProducts(data.products || []);
@@ -1125,6 +1149,19 @@
                 buttonText: document.getElementById('cta-btntext-inp').value.trim(),
                 buttonLink: document.getElementById('cta-btnlink-inp').value.trim()
             };
+
+            // Developer Credit
+            const devTextInp = document.getElementById('dev-credit-inp-text');
+            const devPhoneInp = document.getElementById('dev-credit-inp-phone');
+            if (devTextInp && devPhoneInp) {
+                const phoneStr = devPhoneInp.value.trim();
+                const rawDigits = phoneStr.replace(/\D/g, '');
+                data.developerCredit = {
+                    text: devTextInp.value.trim() || 'Website Designed & Developed by Kanchana',
+                    whatsapp: phoneStr || '+94 77 440 2271',
+                    whatsappRaw: rawDigits || '94774402271'
+                };
+            }
 
             if (saveSiteData(data)) {
                 showToast("All settings saved and synced to website!");

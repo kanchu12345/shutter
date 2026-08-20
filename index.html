@@ -943,12 +943,20 @@
 
             </div>
 
-            <!-- Bottom Legal & Admin Link -->
-            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <!-- Bottom Legal, Design Credit & Admin Link -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
                 <p>&copy; <span id="current-year">2026</span> Shutter 2000 International (Pvt) Ltd. All Rights Reserved.</p>
-                <div class="flex items-center gap-4">
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
+                    <a id="dev-credit-link" href="https://wa.me/94774402271?text=Hello%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20web%20development." target="_blank" class="text-slate-300 hover:text-amber-300 font-medium inline-flex items-center gap-2 transition group bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800 hover:border-amber-500/50">
+                        <i class="fa-solid fa-code text-xs text-elcardo-red group-hover:scale-110 transition"></i>
+                        <span id="dev-credit-text">Designed & Developed by Kanchana</span>
+                        <span class="inline-flex items-center gap-1 text-[11px] bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-700/60 group-hover:bg-emerald-900 transition">
+                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                            <span id="dev-credit-phone">+94 77 440 2271</span>
+                        </span>
+                    </a>
                     <a href="admin.html" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1 font-semibold">
-                        <i class="fa-solid fa-gear text-[10px]"></i> Client Admin CMS
+                        <i class="fa-solid fa-gear text-[10px]"></i> Staff CMS
                     </a>
                 </div>
             </div>
@@ -1113,6 +1121,14 @@
                 safeHref('footer-social-yt', tb.socialLinks.youtube || "#");
                 safeHref('footer-social-li', tb.socialLinks.linkedin || "#");
                 safeHref('footer-social-wa', tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`);
+            }
+
+            // Developer Credit
+            const dev = data.developerCredit || {};
+            if (dev.text) safeText('dev-credit-text', dev.text);
+            if (dev.whatsapp) safeText('dev-credit-phone', dev.whatsapp);
+            if (dev.whatsappRaw) {
+                safeHref('dev-credit-link', `https://wa.me/${dev.whatsappRaw}?text=Hello%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20web%20development.`);
             }
         }
 
