@@ -943,24 +943,46 @@
 
             </div>
 
-            <!-- Bottom Legal, Design Credit & Admin Link -->
-            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                <p>&copy; <span id="current-year">2026</span> Shutter 2000 International (Pvt) Ltd. All Rights Reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                    <div class="inline-flex items-center gap-2 bg-slate-900/90 px-3.5 py-1.5 rounded-full border border-slate-800 shadow-sm">
-                        <i class="fa-solid fa-wand-magic-sparkles text-xs text-amber-400"></i>
-                        <span class="text-slate-300 font-medium">Designed & Developed by</span>
-                        <a id="dev-fb-link" href="https://www.facebook.com/profile.php?id=100082101311247" target="_blank" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 hover:underline transition">
-                            <i class="fa-brands fa-facebook text-blue-400"></i>
-                            <span id="dev-credit-name">Infinite Design</span>
+            <!-- Bottom Legal, Official Agency Credit & Admin Link -->
+            <div class="pt-8 flex flex-col lg:flex-row justify-between items-center gap-6 text-xs text-slate-400">
+                <div class="space-y-1 text-center lg:text-left">
+                    <p>&copy; <span id="current-year">2026</span> Shutter 2000 International (Pvt) Ltd. All Rights Reserved.</p>
+                    <p class="text-[11px] text-slate-500">Premium Door Automation & Architectural Fabrication Systems Across Sri Lanka.</p>
+                </div>
+                
+                <!-- Official Infinite Design Agency Credit -->
+                <div class="flex flex-wrap items-center justify-center gap-3 bg-slate-900/90 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-2xl shadow-xl transition">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white text-xs shadow-md">
+                            <i class="fa-solid fa-infinity font-black"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-[9.5px] text-slate-400 uppercase tracking-widest font-extrabold leading-none mb-0.5">Designed & Developed by</div>
+                            <a id="dev-fb-link" href="https://www.facebook.com/profile.php?id=100082101311247" target="_blank" class="font-heading font-extrabold text-white hover:text-amber-400 text-xs transition flex items-center gap-1.5">
+                                <span id="dev-credit-name">Infinite Design</span>
+                                <i class="fa-solid fa-circle-check text-blue-400 text-[11px]" title="Verified Agency"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="h-6 w-px bg-slate-800 hidden sm:block"></div>
+
+                    <div class="flex items-center gap-2">
+                        <a id="dev-fb-btn" href="https://www.facebook.com/profile.php?id=100082101311247" target="_blank" class="inline-flex items-center gap-1.5 bg-[#1877f2]/15 hover:bg-[#1877f2]/25 text-[#1877f2] font-bold px-2.5 py-1 rounded-lg text-[11px] border border-[#1877f2]/30 transition" title="Official Facebook Page">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span>Facebook</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
                         </a>
-                        <a id="dev-credit-link" href="https://wa.me/94789714912?text=Hello%20Infinite%20Design%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" class="inline-flex items-center gap-1 text-[11px] bg-emerald-950 hover:bg-emerald-900 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-700/60 transition ml-1">
-                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                        <a id="dev-credit-link" href="https://wa.me/94789714912?text=Hello%20Infinite%20Design%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 font-bold px-2.5 py-1 rounded-lg text-[11px] border border-emerald-700/60 transition shadow-sm" title="Direct WhatsApp Inquiries">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span id="dev-credit-phone">+94 78 971 4912</span>
                         </a>
                     </div>
+                </div>
+
+                <div class="flex items-center gap-3">
                     <a href="admin.html" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1 font-semibold text-xs">
-                        <i class="fa-solid fa-gear text-[10px]"></i> Staff CMS
+                        <i class="fa-solid fa-lock text-[10px]"></i> Staff CMS
                     </a>
                 </div>
             </div>
@@ -1130,7 +1152,10 @@
             // Developer Credit
             const dev = data.developerCredit || {};
             if (dev.name) safeText('dev-credit-name', dev.name);
-            if (dev.facebook) safeHref('dev-fb-link', dev.facebook);
+            if (dev.facebook) {
+                safeHref('dev-fb-link', dev.facebook);
+                safeHref('dev-fb-btn', dev.facebook);
+            }
             if (dev.whatsapp) safeText('dev-credit-phone', dev.whatsapp);
             if (dev.whatsappRaw) {
                 safeHref('dev-credit-link', `https://wa.me/${dev.whatsappRaw}?text=Hello%20Infinite%20Design%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20a%20project.`);
