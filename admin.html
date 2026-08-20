@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Admin CMS | Shutter 2000 International (Pvt) Ltd</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        elcardo: {
+                            blue: '#1550a8',
+                            darkblue: '#162a7a',
+                            navy: '#0d1f42',
+                            red: '#ed1f25',
+                            darkred: '#c01318',
+                            accent: '#f59e0b',
+                            lightbg: '#f4f7fc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Outfit', sans-serif; }
+        .sidebar-btn.active {
+            background-color: #1550a8;
+            color: #ffffff;
+            font-weight: 700;
+            border-left: 4px solid #ed1f25;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 opacity-0 translate-y-[-20px] pointer-events-none bg-emerald-600 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-emerald-400">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toast-message" class="text-sm font-semibold">Changes saved successfully!</span>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- PIN LOGIN SCREEN (When Unauthenticated)        -->
+    <!-- ============================================== -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center p-4 bg-slate-950">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-elcardo-blue/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="text-center space-y-3 mb-8">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-elcardo-blue to-elcardo-darkblue flex items-center justify-center text-white text-3xl font-black mx-auto shadow-lg border border-blue-400/30">
+                    <i class="fa-solid fa-lock text-amber-400"></i>
+                </div>
+                <h1 class="font-heading text-2xl font-black text-white">Shutter 2000 CMS</h1>
+                <p class="text-xs text-slate-400">Full Content Management Control Panel</p>
+                <div class="inline-block bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-[11px] text-amber-400">
+                    Default PIN: <strong>2000</strong>
+                </div>
+            </div>
+
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2 text-center">Enter Security PIN</label>
+                    <input type="password" id="admin-pin-input" autofocus maxlength="12" placeholder="••••" class="w-full text-center text-2xl tracking-widest bg-slate-950 border border-slate-700 rounded-2xl py-4 text-amber-400 font-black focus:ring-2 focus:ring-elcardo-blue focus:border-elcardo-blue focus:outline-none">
+                    <p id="login-error" class="text-rose-400 text-xs mt-2 text-center hidden font-medium flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Incorrect PIN. Please try again.
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full bg-elcardo-red hover:bg-elcardo-darkred text-white font-extrabold py-4 rounded-xl shadow-lg shadow-red-600/25 transition transform hover:-translate-y-0.5 text-base flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Unlock Dashboard</span>
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+                <a href="index.html" class="text-xs text-slate-400 hover:text-amber-400 transition flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Public Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MAIN CMS DASHBOARD (When Authenticated)        -->
+    <!-- ============================================== -->
+    <div id="admin-dashboard" class="hidden flex-col min-h-screen">
+        
+        <!-- Dashboard Top Header -->
+        <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 px-4 sm:px-8 py-3.5">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-elcardo-red flex items-center justify-center text-white font-black shadow-md">
+                        <i class="fa-solid fa-bars-staggered rotate-90 text-amber-400 text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="font-heading font-extrabold text-lg text-white">Shutter 2000 Master CMS</h2>
+                            <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">100% Live Sync</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Edit every letter, link, image and pricing metric across the website</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="index.html" target="_blank" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-700 transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-amber-400"></i>
+                        <span>View Live Website</span>
+                    </a>
+                    <button id="logout-btn" class="inline-flex items-center gap-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition">
+                        <i class="fa-solid fa-power-off"></i>
+                        <span>Lock CMS</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Layout Body (Sidebar + Content) -->
+        <div class="flex-grow flex flex-col md:flex-row max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 gap-6">
+            
+            <!-- Left Navigation Sidebar -->
+            <aside class="w-full md:w-64 flex-shrink-0 bg-slate-900 border border-slate-800 rounded-2xl p-3 h-fit space-y-1">
+                <button class="sidebar-btn active w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-branding">
+                    <i class="fa-solid fa-building w-4 text-amber-400"></i>
+                    <span>Top Bar & Branding</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-slides">
+                    <i class="fa-solid fa-images w-4 text-blue-400"></i>
+                    <span>Hero Carousel (<span id="side-count-slides">3</span>)</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-about">
+                    <i class="fa-solid fa-award w-4 text-emerald-400"></i>
+                    <span>About Us & Factory</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-products">
+                    <i class="fa-solid fa-cubes w-4 text-red-400"></i>
+                    <span>Products (<span id="side-count-products">8</span>)</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-colors">
+                    <i class="fa-solid fa-palette w-4 text-purple-400"></i>
+                    <span>Colorbond Palette</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-branches">
+                    <i class="fa-solid fa-map-location-dot w-4 text-cyan-400"></i>
+                    <span>Branch Network (<span id="side-count-branches">4</span>)</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-gallery">
+                    <i class="fa-solid fa-camera w-4 text-yellow-400"></i>
+                    <span>Project Gallery (<span id="side-count-gallery">6</span>)</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-testimonials">
+                    <i class="fa-solid fa-star w-4 text-amber-300"></i>
+                    <span>Testimonials (<span id="side-count-reviews">3</span>)</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-contact">
+                    <i class="fa-solid fa-phone-volume w-4 text-teal-400"></i>
+                    <span>Contact Coordinates</span>
+                </button>
+                <button class="sidebar-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-2.5" data-tab="tab-system">
+                    <i class="fa-solid fa-shield-halved w-4 text-rose-400"></i>
+                    <span>PIN & JSON Backup</span>
+                </button>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="flex-grow bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 custom-scrollbar">
+
+                <!-- TAB 1: TOP BAR & BRANDING -->
+                <section id="tab-branding" class="tab-content space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Top Bar, Branding & Social Links</h3>
+                            <p class="text-xs text-slate-400">Edit company brand names, top announcement bar, and social links.</p>
+                        </div>
+                        <button type="button" class="btn-save-all bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                        </button>
+                    </div>
+
+                    <form id="form-branding" class="space-y-6">
+                        <!-- Top Bar Box -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Top Announcement & Contacts</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Top Bar Address</label>
+                                    <input type="text" id="tb-address" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Working Hours / Availability</label>
+                                    <input type="text" id="tb-hours" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Top Announcement Marquee / Notice Text</label>
+                                <input type="text" id="tb-notice" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                            </div>
+                        </div>
+
+                        <!-- Brand Identity Box -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Brand Identity & Hotlines</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Company Full Name</label>
+                                    <input type="text" id="br-name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Short Brand Name</label>
+                                    <input type="text" id="br-shortname" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Tagline</label>
+                                    <input type="text" id="br-tagline" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Head Office Label</label>
+                                    <input type="text" id="br-headoffice" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Display Hotline</label>
+                                    <input type="text" id="br-phone" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Raw Hotline Digits (for WhatsApp & Tel)</label>
+                                    <input type="text" id="br-rawphone" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Sub-Tagline / Narrative</label>
+                                <textarea id="br-subtagline" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Social Media Links</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Facebook URL</label>
+                                    <input type="url" id="soc-fb" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Instagram URL</label>
+                                    <input type="url" id="soc-insta" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">YouTube URL</label>
+                                    <input type="url" id="soc-yt" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">LinkedIn URL</label>
+                                    <input type="url" id="soc-li" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- TAB 2: HERO CAROUSEL SLIDES -->
+                <section id="tab-slides" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Hero Banner Carousel Slides</h3>
+                            <p class="text-xs text-slate-400">Manage high-impact slides on the homepage banner.</p>
+                        </div>
+                        <button id="btn-add-slide" class="bg-elcardo-red hover:bg-elcardo-darkred text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Slide
+                        </button>
+                    </div>
+
+                    <div id="slides-list" class="space-y-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 3: ABOUT US & FACTORY -->
+                <section id="tab-about" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">About Us & Factory Standards</h3>
+                            <p class="text-xs text-slate-400">Edit company background, experience pills, and quality standards.</p>
+                        </div>
+                        <button type="button" class="btn-save-all bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                        </button>
+                    </div>
+
+                    <form id="form-about" class="space-y-6">
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">About Section Content</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Badge Text</label>
+                                    <input type="text" id="abt-badge" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Main Heading</label>
+                                    <input type="text" id="abt-title" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Subtitle</label>
+                                    <input type="text" id="abt-subtitle" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Experience Years (e.g. 24+)</label>
+                                    <input type="text" id="abt-expyears" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Image 1 URL</label>
+                                    <input type="url" id="abt-img1" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Image 2 URL</label>
+                                    <input type="url" id="abt-img2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Paragraph 1</label>
+                                <textarea id="abt-desc1" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Paragraph 2</label>
+                                <textarea id="abt-desc2" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Advantage Checklist (one item per line)</label>
+                                <textarea id="abt-checklist" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- TAB 4: PRODUCTS & SOLUTIONS -->
+                <section id="tab-products" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Products & Solutions Catalog</h3>
+                            <p class="text-xs text-slate-400">Add, edit, or remove products and their technical specifications.</p>
+                        </div>
+                        <button id="btn-add-product" class="bg-elcardo-red hover:bg-elcardo-darkred text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Product
+                        </button>
+                    </div>
+
+                    <div id="products-list" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 5: COLORBOND COLOR PALETTE -->
+                <section id="tab-colors" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Colorbond Architectural Palette</h3>
+                            <p class="text-xs text-slate-400">Manage available finishes shown in the interactive visualizer.</p>
+                        </div>
+                        <button id="btn-add-color" class="bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Color
+                        </button>
+                    </div>
+
+                    <div id="colors-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 6: BRANCH NETWORK -->
+                <section id="tab-branches" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Branches & Showrooms</h3>
+                            <p class="text-xs text-slate-400">Manage service hubs and regional dealer offices.</p>
+                        </div>
+                        <button id="btn-add-branch" class="bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Branch
+                        </button>
+                    </div>
+
+                    <div id="branches-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 7: PROJECT GALLERY -->
+                <section id="tab-gallery" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Project Showcase Photos</h3>
+                            <p class="text-xs text-slate-400">Add or remove installed project showcase images.</p>
+                        </div>
+                        <button id="btn-add-gallery" class="bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Image
+                        </button>
+                    </div>
+
+                    <div id="gallery-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 8: TESTIMONIALS -->
+                <section id="tab-testimonials" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Customer Reviews & Testimonials</h3>
+                            <p class="text-xs text-slate-400">Manage client reviews and feedback cards.</p>
+                        </div>
+                        <button id="btn-add-testimonial" class="bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add Review
+                        </button>
+                    </div>
+
+                    <div id="testimonials-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 9: CONTACT COORDINATES -->
+                <section id="tab-contact" class="tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-heading text-xl font-black text-white">Contact Info & CTA Banner</h3>
+                            <p class="text-xs text-slate-400">Configure phone lines, official emails, and promotional callouts.</p>
+                        </div>
+                        <button type="button" class="btn-save-all bg-elcardo-blue hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                        </button>
+                    </div>
+
+                    <form id="form-contact" class="space-y-6">
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Direct Contact Coordinates</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Physical Address</label>
+                                    <input type="text" id="ct-address" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Official Email</label>
+                                    <input type="email" id="ct-email" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Phone Display</label>
+                                    <input type="text" id="ct-phone" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">WhatsApp Raw (Digits)</label>
+                                    <input type="text" id="ct-rawphone" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Promotional CTA Banner</h4>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Banner Title</label>
+                                <input type="text" id="cta-title-inp" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Banner Subtitle</label>
+                                <input type="text" id="cta-sub-inp" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Button Text</label>
+                                    <input type="text" id="cta-btntext-inp" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Button Link</label>
+                                    <input type="text" id="cta-btnlink-inp" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- TAB 10: PIN & JSON BACKUP -->
+                <section id="tab-system" class="tab-content hidden space-y-6">
+                    <div class="pb-4 border-b border-slate-800">
+                        <h3 class="font-heading text-xl font-black text-white">Security PIN & System Backup</h3>
+                        <p class="text-xs text-slate-400">Update login credentials, download site backups, or restore defaults.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Update PIN -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Change Admin PIN</h4>
+                            <form id="form-pin" class="space-y-3">
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">New PIN (Minimum 4 digits)</label>
+                                    <input type="password" id="new-pin" required minlength="4" placeholder="Enter new PIN" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-slate-400 mb-1">Confirm New PIN</label>
+                                    <input type="password" id="confirm-pin" required minlength="4" placeholder="Confirm new PIN" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                </div>
+                                <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition">
+                                    Update Security PIN
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Backup / Restore -->
+                        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
+                            <h4 class="font-bold text-xs uppercase text-amber-400">Data Management</h4>
+                            <div class="space-y-2.5">
+                                <div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800">
+                                    <span class="text-xs text-slate-300">Export Site Backup</span>
+                                    <button id="btn-export-json" class="bg-elcardo-blue hover:bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                                        <i class="fa-solid fa-download mr-1"></i> Export JSON
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800">
+                                    <span class="text-xs text-slate-300">Import / Restore Backup</span>
+                                    <label class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-700 cursor-pointer transition">
+                                        <i class="fa-solid fa-upload mr-1"></i> Import JSON
+                                        <input type="file" id="file-import-json" accept=".json" class="hidden">
+                                    </label>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-rose-950/30 rounded-xl border border-rose-900/40">
+                                    <span class="text-xs text-rose-300 font-semibold">Factory Reset to Defaults</span>
+                                    <button id="btn-reset-factory" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                                        <i class="fa-solid fa-rotate-left mr-1"></i> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- SLIDE EDIT/ADD MODAL                           -->
+    <!-- ============================================== -->
+    <div id="slide-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="font-bold text-white text-sm" id="slide-modal-title">Edit Slide</h3>
+                <button class="modal-close text-slate-400 hover:text-white" data-modal="slide-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-slide-modal" class="space-y-3">
+                <input type="hidden" id="slide-id">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Badge Text</label>
+                    <input type="text" id="modal-slide-badge" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Main Heading Title</label>
+                    <input type="text" id="modal-slide-title" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Subtitle (Sub-heading)</label>
+                    <input type="text" id="modal-slide-sub" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Paragraph Description (Optional)</label>
+                    <textarea id="modal-slide-desc" rows="2" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Background Image URL</label>
+                    <input type="url" id="modal-slide-img" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Button 1 Text</label>
+                        <input type="text" id="modal-slide-cta1text" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Button 1 Link</label>
+                        <input type="text" id="modal-slide-cta1link" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Button 2 Text</label>
+                        <input type="text" id="modal-slide-cta2text" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Button 2 Link</label>
+                        <input type="text" id="modal-slide-cta2link" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="slide-modal">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Slide</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- PRODUCT EDIT/ADD MODAL                         -->
+    <!-- ============================================== -->
+    <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="font-bold text-white text-sm" id="prod-modal-title">Add / Edit Product</h3>
+                <button class="modal-close text-slate-400 hover:text-white" data-modal="product-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-product-modal" class="space-y-3">
+                <input type="hidden" id="prod-id">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Product Code</label>
+                        <input type="text" id="modal-prod-code" required placeholder="e.g. S2K-RD-01" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Badge</label>
+                        <input type="text" id="modal-prod-badge" placeholder="e.g. Bestseller" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Product Name</label>
+                    <input type="text" id="modal-prod-name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Category Key</label>
+                        <select id="modal-prod-cat" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                            <option value="roller-doors">Roller Doors & Shutters</option>
+                            <option value="retractable-gates">Retractable & Sliding Gates</option>
+                            <option value="high-speed-doors">High-Speed Rapid Doors</option>
+                            <option value="smart-automation">Smart Access & IoT</option>
+                            <option value="spare-parts">Motors & Spare Parts</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Category Label</label>
+                        <input type="text" id="modal-prod-catname" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Image URL</label>
+                    <input type="url" id="modal-prod-img" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Description</label>
+                    <textarea id="modal-prod-desc" rows="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Warranty Term</label>
+                        <input type="text" id="modal-prod-warranty" placeholder="10-Year Panel / 5-Year Motor" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Motor Specification</label>
+                        <input type="text" id="modal-prod-motor" placeholder="Heavy Duty Center / Tubular" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Feature Badges (Comma-separated)</label>
+                    <input type="text" id="modal-prod-features" placeholder="Silent Webbing, Auto-Reverse, Key Lock" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="product-modal">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- GENERIC SIMPLE MODAL (Colors, Branches, etc.)  -->
+    <!-- ============================================== -->
+    <div id="generic-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="font-bold text-white text-sm" id="generic-modal-title">Item</h3>
+                <button class="modal-close text-slate-400 hover:text-white" data-modal="generic-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="generic-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script>
+        const AUTH_SESSION_KEY = 'shutter2000_admin_session';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            initLogin();
+            initSidebar();
+            initFormListeners();
+            initModals();
+        });
+
+        function checkAuth() {
+            const isAuth = sessionStorage.getItem(AUTH_SESSION_KEY) === 'true';
+            if (isAuth) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('flex');
+                loadAllDataIntoAdmin();
+            } else {
+                document.getElementById('login-screen').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('flex');
+            }
+        }
+
+        function initLogin() {
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const pin = document.getElementById('admin-pin-input').value.trim();
+                if (verifyAdminPin(pin)) {
+                    sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+                    document.getElementById('login-error').classList.add('hidden');
+                    checkAuth();
+                    showToast("Unlocked CMS successfully!");
+                } else {
+                    document.getElementById('login-error').classList.remove('hidden');
+                    document.getElementById('admin-pin-input').value = '';
+                }
+            });
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                sessionStorage.removeItem(AUTH_SESSION_KEY);
+                checkAuth();
+                showToast("Logged out.", "info");
+            });
+        }
+
+        function initSidebar() {
+            document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.remove('hidden');
+                });
+            });
+        }
+
+        /**
+         * Load all data from localStorage into Admin forms
+         */
+        function loadAllDataIntoAdmin() {
+            const data = getSiteData();
+            const tb = data.topBar || {};
+            const br = data.branding || {};
+            const abt = data.about || {};
+            const ct = data.contact || {};
+            const cta = data.ctaBanner || {};
+
+            // Top Bar
+            document.getElementById('tb-address').value = tb.address || '';
+            document.getElementById('tb-hours').value = tb.workingHours || '';
+            document.getElementById('tb-notice').value = tb.notice || '';
+            if (tb.socialLinks) {
+                document.getElementById('soc-fb').value = tb.socialLinks.facebook || '';
+                document.getElementById('soc-insta').value = tb.socialLinks.instagram || '';
+                document.getElementById('soc-yt').value = tb.socialLinks.youtube || '';
+                document.getElementById('soc-li').value = tb.socialLinks.linkedin || '';
+            }
+
+            // Branding
+            document.getElementById('br-name').value = br.companyName || '';
+            document.getElementById('br-shortname').value = br.shortName || '';
+            document.getElementById('br-tagline').value = br.tagline || '';
+            document.getElementById('br-subtagline').value = br.subtagline || '';
+            document.getElementById('br-headoffice').value = br.headOffice || '';
+            document.getElementById('br-phone').value = br.hotlinePhone || '';
+            document.getElementById('br-rawphone').value = br.hotlineRaw || '';
+
+            // About
+            document.getElementById('abt-badge').value = abt.badge || '';
+            document.getElementById('abt-title').value = abt.title || '';
+            document.getElementById('abt-subtitle').value = abt.subtitle || '';
+            document.getElementById('abt-desc1').value = abt.desc1 || '';
+            document.getElementById('abt-desc2').value = abt.desc2 || '';
+            document.getElementById('abt-expyears').value = abt.experienceYears || '';
+            document.getElementById('abt-img1').value = abt.image1 || '';
+            document.getElementById('abt-img2').value = abt.image2 || '';
+            document.getElementById('abt-checklist').value = (abt.checklist || []).join('\n');
+
+            // Contact & CTA
+            document.getElementById('ct-address').value = ct.address || '';
+            document.getElementById('ct-email').value = ct.email || '';
+            document.getElementById('ct-phone').value = ct.phone || '';
+            document.getElementById('ct-rawphone').value = ct.whatsappRaw || '';
+            document.getElementById('cta-title-inp').value = cta.title || '';
+            document.getElementById('cta-sub-inp').value = cta.subtitle || '';
+            document.getElementById('cta-btntext-inp').value = cta.buttonText || '';
+            document.getElementById('cta-btnlink-inp').value = cta.buttonLink || '';
+
+            // Render Dynamic Collections
+            renderAdminSlides(data.heroSlides || []);
+            renderAdminProducts(data.products || []);
+            renderAdminColors(data.colorSelector ? data.colorSelector.colors : []);
+            renderAdminBranches(data.branches || []);
+            renderAdminGallery(data.gallery || []);
+            renderAdminTestimonials(data.testimonials || []);
+        }
+
+        function initFormListeners() {
+            document.querySelectorAll('.btn-save-all').forEach(btn => {
+                btn.addEventListener('click', saveAllTextData);
+            });
+
+            // Change PIN
+            document.getElementById('form-pin').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const p1 = document.getElementById('new-pin').value.trim();
+                const p2 = document.getElementById('confirm-pin').value.trim();
+                if (p1 !== p2) {
+                    alert("PINs do not match!");
+                    return;
+                }
+                const res = updateAdminPin(p1);
+                if (res.success) {
+                    showToast(res.message);
+                    document.getElementById('form-pin').reset();
+                }
+            });
+
+            // Export JSON
+            document.getElementById('btn-export-json').addEventListener('click', () => {
+                const data = getSiteData();
+                const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+                const a = document.createElement('a');
+                a.href = str;
+                a.download = `shutter2000_full_backup_${new Date().toISOString().slice(0,10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                showToast("Full backup downloaded!");
+            });
+
+            // Import JSON
+            document.getElementById('file-import-json').addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (evt) => {
+                    try {
+                        const parsed = JSON.parse(evt.target.result);
+                        if (parsed && parsed.branding && parsed.products) {
+                            saveSiteData(parsed);
+                            loadAllDataIntoAdmin();
+                            showToast("Backup restored & synced successfully!");
+                        } else {
+                            alert("Invalid backup format.");
+                        }
+                    } catch (err) {
+                        alert("Error parsing JSON file.");
+                    }
+                };
+                reader.readAsText(file);
+            });
+
+            // Reset Factory
+            document.getElementById('btn-reset-factory').addEventListener('click', () => {
+                if (confirm("WARNING: This will reset all text, products, slides, and gallery images to initial defaults. Are you sure?")) {
+                    resetSiteData();
+                    loadAllDataIntoAdmin();
+                    showToast("Restored factory defaults.", "info");
+                }
+            });
+        }
+
+        function saveAllTextData() {
+            const data = getSiteData();
+
+            // Top Bar
+            data.topBar = {
+                ...data.topBar,
+                address: document.getElementById('tb-address').value.trim(),
+                workingHours: document.getElementById('tb-hours').value.trim(),
+                notice: document.getElementById('tb-notice').value.trim(),
+                socialLinks: {
+                    facebook: document.getElementById('soc-fb').value.trim(),
+                    instagram: document.getElementById('soc-insta').value.trim(),
+                    youtube: document.getElementById('soc-yt').value.trim(),
+                    linkedin: document.getElementById('soc-li').value.trim(),
+                    whatsapp: `https://wa.me/${document.getElementById('br-rawphone').value.trim()}`
+                }
+            };
+
+            // Branding
+            data.branding = {
+                ...data.branding,
+                companyName: document.getElementById('br-name').value.trim(),
+                shortName: document.getElementById('br-shortname').value.trim(),
+                tagline: document.getElementById('br-tagline').value.trim(),
+                subtagline: document.getElementById('br-subtagline').value.trim(),
+                headOffice: document.getElementById('br-headoffice').value.trim(),
+                hotlinePhone: document.getElementById('br-phone').value.trim(),
+                hotlineRaw: document.getElementById('br-rawphone').value.trim()
+            };
+
+            // About
+            data.about = {
+                ...data.about,
+                badge: document.getElementById('abt-badge').value.trim(),
+                title: document.getElementById('abt-title').value.trim(),
+                subtitle: document.getElementById('abt-subtitle').value.trim(),
+                desc1: document.getElementById('abt-desc1').value.trim(),
+                desc2: document.getElementById('abt-desc2').value.trim(),
+                experienceYears: document.getElementById('abt-expyears').value.trim(),
+                image1: document.getElementById('abt-img1').value.trim(),
+                image2: document.getElementById('abt-img2').value.trim(),
+                checklist: document.getElementById('abt-checklist').value.split('\n').map(s => s.trim()).filter(Boolean)
+            };
+
+            // Contact & CTA
+            data.contact = {
+                ...data.contact,
+                address: document.getElementById('ct-address').value.trim(),
+                email: document.getElementById('ct-email').value.trim(),
+                phone: document.getElementById('ct-phone').value.trim(),
+                whatsappRaw: document.getElementById('ct-rawphone').value.trim()
+            };
+
+            data.ctaBanner = {
+                ...data.ctaBanner,
+                title: document.getElementById('cta-title-inp').value.trim(),
+                subtitle: document.getElementById('cta-sub-inp').value.trim(),
+                buttonText: document.getElementById('cta-btntext-inp').value.trim(),
+                buttonLink: document.getElementById('cta-btnlink-inp').value.trim()
+            };
+
+            if (saveSiteData(data)) {
+                showToast("All settings saved and synced to website!");
+            }
+        }
+
+        /**
+         * Render Slides Admin
+         */
+        function renderAdminSlides(slides) {
+            const list = document.getElementById('slides-list');
+            document.getElementById('side-count-slides').textContent = slides.length;
+            list.innerHTML = '';
+
+            slides.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between";
+                card.innerHTML = `
+                    <div class="flex items-center gap-4">
+                        <img src="${s.bgImage}" alt="${s.title}" class="w-20 h-14 rounded-xl object-cover border border-slate-700" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=300&q=80'">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-amber-400">${s.badge}</span>
+                            <h4 class="text-xs font-bold text-white">${s.title}</h4>
+                            <p class="text-[11px] text-slate-400 line-clamp-1">${s.subtitle}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 self-end sm:self-center">
+                        <button class="btn-edit-slide bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Edit</button>
+                        <button class="btn-del-slide bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/40 text-xs px-2.5 py-1.5 rounded-lg"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+
+                card.querySelector('.btn-edit-slide').addEventListener('click', () => openSlideModal(s));
+                card.querySelector('.btn-del-slide').addEventListener('click', () => {
+                    if (confirm(`Delete slide "${s.title}"?`)) {
+                        const data = getSiteData();
+                        data.heroSlides = data.heroSlides.filter(x => x.id !== s.id);
+                        saveSiteData(data);
+                        renderAdminSlides(data.heroSlides);
+                        showToast("Slide removed.");
+                    }
+                });
+
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-slide').addEventListener('click', () => {
+            openSlideModal(null);
+        });
+
+        function openSlideModal(s) {
+            const modal = document.getElementById('slide-modal');
+            document.getElementById('slide-id').value = s ? s.id : '';
+            document.getElementById('modal-slide-badge').value = s ? s.badge : '';
+            document.getElementById('modal-slide-title').value = s ? s.title : '';
+            document.getElementById('modal-slide-sub').value = s ? s.subtitle : '';
+            document.getElementById('modal-slide-desc').value = s ? (s.description || '') : '';
+            document.getElementById('modal-slide-img').value = s ? s.bgImage : '';
+            document.getElementById('modal-slide-cta1text').value = s ? (s.cta1Text || 'Explore More') : 'Explore More';
+            document.getElementById('modal-slide-cta1link').value = s ? (s.cta1Link || '#products') : '#products';
+            document.getElementById('modal-slide-cta2text').value = s ? (s.cta2Text || 'Get In Touch') : 'Get In Touch';
+            document.getElementById('modal-slide-cta2link').value = s ? (s.cta2Link || '#contact') : '#contact';
+            document.getElementById('slide-modal-title').textContent = s ? 'Edit Slide' : 'Add New Slide';
+            modal.classList.remove('hidden');
+        }
+
+        document.getElementById('form-slide-modal').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = getSiteData();
+            const sId = document.getElementById('slide-id').value;
+            const badge = document.getElementById('modal-slide-badge').value.trim();
+            const title = document.getElementById('modal-slide-title').value.trim();
+            const subtitle = document.getElementById('modal-slide-sub').value.trim();
+            const description = document.getElementById('modal-slide-desc').value.trim();
+            const bgImage = document.getElementById('modal-slide-img').value.trim();
+            const cta1Text = document.getElementById('modal-slide-cta1text').value.trim();
+            const cta1Link = document.getElementById('modal-slide-cta1link').value.trim();
+            const cta2Text = document.getElementById('modal-slide-cta2text').value.trim();
+            const cta2Link = document.getElementById('modal-slide-cta2link').value.trim();
+
+            if (sId) {
+                const idx = data.heroSlides.findIndex(x => x.id === sId);
+                if (idx !== -1) {
+                    data.heroSlides[idx] = { id: sId, badge, title, subtitle, description, bgImage, cta1Text, cta1Link, cta2Text, cta2Link };
+                }
+            } else {
+                data.heroSlides.push({ id: 'slide-' + Date.now(), badge, title, subtitle, description, bgImage, cta1Text, cta1Link, cta2Text, cta2Link });
+            }
+
+            saveSiteData(data);
+            document.getElementById('slide-modal').classList.add('hidden');
+            renderAdminSlides(data.heroSlides);
+            showToast("Slide saved successfully!");
+        });
+
+        /**
+         * Render Products Admin
+         */
+        function renderAdminProducts(products) {
+            const list = document.getElementById('products-list');
+            document.getElementById('side-count-products').textContent = products.length;
+            list.innerHTML = '';
+
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-3";
+                card.innerHTML = `
+                    <div class="flex gap-3">
+                        <img src="${p.image}" alt="${p.name}" class="w-20 h-20 rounded-xl object-cover border border-slate-700" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=300&q=80'">
+                        <div class="overflow-hidden">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[9px] font-black bg-elcardo-red text-white px-1.5 py-0.5 rounded">${p.code}</span>
+                                <span class="text-[10px] text-slate-400">${p.categoryName}</span>
+                            </div>
+                            <h4 class="text-xs font-bold text-white truncate mt-1">${p.name}</h4>
+                            <p class="text-[10px] text-slate-400 line-clamp-2 mt-0.5">${p.description}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-xs">
+                        <span class="text-[10px] text-emerald-400 font-semibold">${p.warranty}</span>
+                        <div class="flex gap-2">
+                            <button class="btn-edit-prod bg-slate-800 hover:bg-slate-700 text-white font-bold px-3 py-1 rounded-lg text-xs">Edit</button>
+                            <button class="btn-del-prod bg-rose-500/20 text-rose-400 border border-rose-500/40 px-2 py-1 rounded-lg text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+
+                card.querySelector('.btn-edit-prod').addEventListener('click', () => openProductModal(p));
+                card.querySelector('.btn-del-prod').addEventListener('click', () => {
+                    if (confirm(`Delete product "${p.name}"?`)) {
+                        const data = getSiteData();
+                        data.products = data.products.filter(x => x.id !== p.id);
+                        saveSiteData(data);
+                        renderAdminProducts(data.products);
+                        showToast("Product deleted.");
+                    }
+                });
+
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-product').addEventListener('click', () => openProductModal(null));
+
+        function openProductModal(p) {
+            const modal = document.getElementById('product-modal');
+            document.getElementById('prod-id').value = p ? p.id : '';
+            document.getElementById('modal-prod-code').value = p ? p.code : '';
+            document.getElementById('modal-prod-badge').value = p ? p.badge : 'Standard';
+            document.getElementById('modal-prod-name').value = p ? p.name : '';
+            document.getElementById('modal-prod-cat').value = p ? p.category : 'roller-doors';
+            document.getElementById('modal-prod-catname').value = p ? p.categoryName : 'Roller Doors';
+            document.getElementById('modal-prod-img').value = p ? p.image : '';
+            document.getElementById('modal-prod-desc').value = p ? p.description : '';
+            document.getElementById('modal-prod-warranty').value = p ? p.warranty : '10-Year Panel / 5-Year Motor';
+            document.getElementById('modal-prod-motor').value = p ? p.motorSpecs : '';
+            document.getElementById('modal-prod-features').value = p ? (p.features || []).join(', ') : '';
+            document.getElementById('prod-modal-title').textContent = p ? 'Edit Product' : 'Add New Product';
+            modal.classList.remove('hidden');
+        }
+
+        document.getElementById('form-product-modal').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = getSiteData();
+            const pId = document.getElementById('prod-id').value;
+            const code = document.getElementById('modal-prod-code').value.trim();
+            const badge = document.getElementById('modal-prod-badge').value.trim();
+            const name = document.getElementById('modal-prod-name').value.trim();
+            const category = document.getElementById('modal-prod-cat').value;
+            const categoryName = document.getElementById('modal-prod-catname').value.trim();
+            const image = document.getElementById('modal-prod-img').value.trim();
+            const description = document.getElementById('modal-prod-desc').value.trim();
+            const warranty = document.getElementById('modal-prod-warranty').value.trim();
+            const motorSpecs = document.getElementById('modal-prod-motor').value.trim();
+            const features = document.getElementById('modal-prod-features').value.split(',').map(s => s.trim()).filter(Boolean);
+
+            if (pId) {
+                const idx = data.products.findIndex(x => x.id === pId);
+                if (idx !== -1) {
+                    data.products[idx] = { id: pId, code, badge, name, category, categoryName, image, description, warranty, motorSpecs, features };
+                }
+            } else {
+                data.products.push({ id: 'prod-' + Date.now(), code, badge, name, category, categoryName, image, description, warranty, motorSpecs, features });
+            }
+
+            saveSiteData(data);
+            document.getElementById('product-modal').classList.add('hidden');
+            renderAdminProducts(data.products);
+            showToast("Product saved successfully!");
+        });
+
+        /**
+         * Colors Admin
+         */
+        function renderAdminColors(colors) {
+            const list = document.getElementById('colors-list');
+            list.innerHTML = '';
+
+            colors.forEach(c => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between";
+                const swatchPreview = c.swatchImg ? 
+                    `<img src="${c.swatchImg}" class="w-8 h-8 rounded-lg object-cover border border-white/20">` : 
+                    `<span class="w-8 h-8 rounded-lg border border-white/20" style="background-color: ${c.hex}"></span>`;
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        ${swatchPreview}
+                        <div class="overflow-hidden">
+                            <h5 class="text-xs font-bold text-white truncate">${c.name}</h5>
+                            <span class="text-[10px] text-slate-400">${c.code} (${c.hex})</span>
+                        </div>
+                    </div>
+                    <button class="btn-del-color text-rose-400 hover:text-rose-300 p-1 text-xs"><i class="fa-solid fa-trash"></i></button>
+                `;
+                card.querySelector('.btn-del-color').addEventListener('click', () => {
+                    if (confirm(`Remove color "${c.name}"?`)) {
+                        const data = getSiteData();
+                        data.colorSelector.colors = data.colorSelector.colors.filter(x => x.code !== c.code);
+                        saveSiteData(data);
+                        renderAdminColors(data.colorSelector.colors);
+                        showToast("Color removed.");
+                    }
+                });
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-color').addEventListener('click', () => {
+            const name = prompt("Enter Color Name (e.g. Caulfield Green):");
+            if (!name) return;
+            const code = prompt("Enter Color Code (e.g. RAL-6005):", "RAL-XXXX");
+            const hex = prompt("Enter Hex Code (e.g. #1e3f20):", "#1e3f20");
+            const swatchImg = prompt("Enter Swatch Image URL (Optional):", "");
+
+            const data = getSiteData();
+            if (!data.colorSelector) data.colorSelector = { colors: [] };
+            data.colorSelector.colors.push({ name, code, hex, swatchImg });
+            saveSiteData(data);
+            renderAdminColors(data.colorSelector.colors);
+            showToast("Color added!");
+        });
+
+        /**
+         * Branches Admin
+         */
+        function renderAdminBranches(branches) {
+            const list = document.getElementById('branches-list');
+            document.getElementById('side-count-branches').textContent = branches.length;
+            list.innerHTML = '';
+
+            branches.forEach((b, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-xs font-bold text-white">${b.name}</h4>
+                            ${b.isHeadOffice ? '<span class="text-[9px] bg-elcardo-red text-white px-1.5 py-0.5 rounded font-black">HEAD OFFICE</span>' : ''}
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-1">${b.address}</p>
+                        <p class="text-[11px] text-slate-300 font-semibold">${b.phone}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-800 flex justify-end">
+                        <button class="btn-del-branch text-rose-400 text-xs hover:text-rose-300"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
+                    </div>
+                `;
+                card.querySelector('.btn-del-branch').addEventListener('click', () => {
+                    if (confirm(`Remove branch "${b.name}"?`)) {
+                        const data = getSiteData();
+                        data.branches.splice(idx, 1);
+                        saveSiteData(data);
+                        renderAdminBranches(data.branches);
+                        showToast("Branch removed.");
+                    }
+                });
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-branch').addEventListener('click', () => {
+            const name = prompt("Enter Branch / Hub Name:");
+            if (!name) return;
+            const address = prompt("Enter Branch Address:");
+            const phone = prompt("Enter Branch Phone:", "+94 77 440 2271");
+            const email = prompt("Enter Branch Email:", "info@shutter2000.lk");
+            const hours = prompt("Enter Operating Hours:", "Mon - Sat: 8.30 AM - 5.30 PM");
+
+            const data = getSiteData();
+            data.branches.push({ name, address, phone, email, hours, isHeadOffice: false });
+            saveSiteData(data);
+            renderAdminBranches(data.branches);
+            showToast("Branch added!");
+        });
+
+        /**
+         * Gallery Admin
+         */
+        function renderAdminGallery(gallery) {
+            const list = document.getElementById('gallery-list');
+            document.getElementById('side-count-gallery').textContent = gallery.length;
+            list.innerHTML = '';
+
+            gallery.forEach(g => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="h-32 bg-slate-900 relative">
+                        <img src="${g.image}" alt="${g.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=300&q=80'">
+                        <span class="absolute top-2 right-2 bg-elcardo-red text-white text-[9px] font-black px-2 py-0.5 rounded">${g.category}</span>
+                    </div>
+                    <div class="p-3">
+                        <h5 class="text-xs font-bold text-white line-clamp-1">${g.title}</h5>
+                        <p class="text-[10px] text-slate-400">${g.location || ''}</p>
+                    </div>
+                    <div class="p-3 pt-0 border-t border-slate-800 flex justify-end">
+                        <button class="btn-del-gal text-rose-400 text-xs hover:text-rose-300"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                card.querySelector('.btn-del-gal').addEventListener('click', () => {
+                    if (confirm(`Remove gallery image "${g.title}"?`)) {
+                        const data = getSiteData();
+                        data.gallery = data.gallery.filter(x => x.id !== g.id);
+                        saveSiteData(data);
+                        renderAdminGallery(data.gallery);
+                        showToast("Gallery image deleted.");
+                    }
+                });
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-gallery').addEventListener('click', () => {
+            const title = prompt("Enter Project Title / Landmark:");
+            if (!title) return;
+            const category = prompt("Enter Category (Commercial / Industrial / Residential / Smart Systems):", "Commercial");
+            const location = prompt("Enter Location:", "Colombo");
+            const image = prompt("Enter Image URL:", "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=900&q=80");
+
+            const data = getSiteData();
+            data.gallery.push({ id: 'gal-' + Date.now(), title, category, location, image });
+            saveSiteData(data);
+            renderAdminGallery(data.gallery);
+            showToast("Gallery photo added!");
+        });
+
+        /**
+         * Testimonials Admin
+         */
+        function renderAdminTestimonials(testimonials) {
+            const list = document.getElementById('testimonials-list');
+            document.getElementById('side-count-reviews').textContent = testimonials.length;
+            list.innerHTML = '';
+
+            testimonials.forEach((t, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <h5 class="text-xs font-bold text-white">${t.name}</h5>
+                            <span class="text-amber-400 text-xs">★ ${t.rating || 5}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400">${t.role}</span>
+                        <p class="text-xs text-slate-300 italic mt-2">"${t.comment}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-800 flex justify-end">
+                        <button class="btn-del-rev text-rose-400 text-xs hover:text-rose-300"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
+                    </div>
+                `;
+                card.querySelector('.btn-del-rev').addEventListener('click', () => {
+                    if (confirm(`Remove review by "${t.name}"?`)) {
+                        const data = getSiteData();
+                        data.testimonials.splice(idx, 1);
+                        saveSiteData(data);
+                        renderAdminTestimonials(data.testimonials);
+                        showToast("Review deleted.");
+                    }
+                });
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btn-add-testimonial').addEventListener('click', () => {
+            const name = prompt("Enter Client Name:");
+            if (!name) return;
+            const role = prompt("Enter Client Role & Company:");
+            const comment = prompt("Enter Review / Feedback:");
+            const rating = parseInt(prompt("Enter Star Rating (1-5):", "5")) || 5;
+
+            const data = getSiteData();
+            data.testimonials.push({ name, role, comment, rating });
+            saveSiteData(data);
+            renderAdminTestimonials(data.testimonials);
+            showToast("Review added!");
+        });
+
+        /**
+         * Modals
+         */
+        function initModals() {
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const mId = btn.getAttribute('data-modal');
+                    document.getElementById(mId).classList.add('hidden');
+                });
+            });
+        }
+
+        /**
+         * Toast Helper
+         */
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+
+            if (type === 'error') {
+                toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 bg-rose-600 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-rose-400 opacity-100 translate-y-0";
+                toastIcon.className = "fa-solid fa-circle-exclamation text-lg";
+            } else if (type === 'info') {
+                toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 bg-blue-600 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-blue-400 opacity-100 translate-y-0";
+                toastIcon.className = "fa-solid fa-circle-info text-lg";
+            } else {
+                toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 bg-emerald-600 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-emerald-400 opacity-100 translate-y-0";
+                toastIcon.className = "fa-solid fa-circle-check text-lg";
+            }
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-20px]');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

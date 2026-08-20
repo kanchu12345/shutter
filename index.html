@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shutter 2000 International (Pvt) Ltd | Roller Doors, Gates & Smart Entrance Solutions Sri Lanka</title>
+    <meta name="description" content="Sri Lanka's leading manufacturer, fabricator and importer of automated roller doors, roller shutters, retractable security gates, rapid rollup doors, and smart smartphone access control systems.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        elcardo: {
+                            blue: '#1550a8',
+                            darkblue: '#162a7a',
+                            navy: '#0d1f42',
+                            red: '#ed1f25',
+                            darkred: '#c01318',
+                            accent: '#f59e0b',
+                            lightbg: '#f4f7fc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Outfit', sans-serif; }
+        
+        .hero-slide {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+        .hero-slide.hidden-slide {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            transform: scale(1.04);
+        }
+        .hero-slide.active-slide {
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
+            transform: scale(1);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(21, 80, 168, 0.08), 0 8px 10px -6px rgba(21, 80, 168, 0.04);
+            transition: all 0.3s ease;
+        }
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(21, 80, 168, 0.16);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-ring { animation: pulse-ring 2.5s infinite; }
+        .red-line-title {
+            border-left: 4px solid #ed1f25;
+            padding-left: 12px;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-elcardo-blue selection:text-white flex flex-col min-h-screen">
+
+    <!-- Top Notification & Quick Contact Bar (Elcardo Corporate Blue) -->
+    <div class="bg-elcardo-blue text-white text-xs border-b border-blue-900/40 py-2 px-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-2">
+            <!-- Left Info -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <span class="flex items-center gap-1.5 font-medium text-slate-100">
+                    <i class="fa-solid fa-location-dot text-amber-400"></i>
+                    <span id="top-address">61/24 Sri Sumangala Road, Ratmalana, Sri Lanka</span>
+                </span>
+                <span class="hidden md:inline-block text-blue-300/60">|</span>
+                <span class="hidden md:flex items-center gap-1.5 text-slate-100 font-medium">
+                    <i class="fa-solid fa-clock text-amber-400"></i>
+                    <span id="top-hours">Mon - Sat: 8.00 AM - 6.00 PM | 24/7 Breakdown Dispatch</span>
+                </span>
+            </div>
+
+            <!-- Right Notice & Social Links -->
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-1.5 text-amber-300 font-semibold text-[11px] bg-blue-950/40 px-2.5 py-0.5 rounded-full border border-blue-800/60">
+                    <span id="top-notice">🔥 Islandwide Delivery & Free On-Site Measurement Service!</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-slate-200">
+                    <a id="top-social-fb" href="#" target="_blank" class="hover:text-amber-300 transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a id="top-social-insta" href="#" target="_blank" class="hover:text-amber-300 transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a id="top-social-yt" href="#" target="_blank" class="hover:text-amber-300 transition" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a id="top-social-li" href="#" target="_blank" class="hover:text-amber-300 transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a id="top-social-wa" href="https://wa.me/94774402271" target="_blank" class="hover:text-emerald-400 text-emerald-300 transition font-bold" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Branding Header (Clean White with Contact Badges) -->
+    <div class="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- Logo & Brand Name -->
+            <a href="#home" class="flex items-center gap-3.5 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-elcardo-blue to-elcardo-darkblue flex items-center justify-center text-white shadow-md shadow-blue-900/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-bars-staggered text-2xl rotate-90 text-amber-400"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-heading font-black text-2xl text-elcardo-darkblue tracking-tight" id="header-brand-name">SHUTTER 2000</span>
+                        <span class="bg-elcardo-red text-white text-[10px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase">INTERNATIONAL</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-semibold tracking-wide" id="header-tagline">Total Door Solutions & Industrial Fabrication</p>
+                </div>
+            </a>
+
+            <!-- Header Contact Badges -->
+            <div class="hidden md:flex items-center gap-6">
+                <!-- Head Office Badge -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-50 text-elcardo-blue flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-building-shield"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-bold uppercase text-slate-400">Ratmalana Workshop</span>
+                        <span class="block text-xs font-extrabold text-slate-800" id="header-headoffice">Main Engineering Hub</span>
+                    </div>
+                </div>
+
+                <!-- 24/7 Hotline Badge -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-red-50 text-elcardo-red flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-bold uppercase text-slate-400">24/7 Hotline / WhatsApp</span>
+                        <a id="header-hotline-link" href="tel:+94774402271" class="block text-sm font-black text-elcardo-darkblue hover:text-elcardo-red transition">
+                            <span id="header-hotline-phone">+94 77 440 2271</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Direct WhatsApp Quote Action Button -->
+                <a id="header-wa-quote-btn" href="https://wa.me/94774402271?text=Hello%20Shutter%202000,%20I%20would%20like%20to%20get%20a%20quotation." target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs shadow-md shadow-emerald-600/20 transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Quick Quote</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-nav-toggle" class="lg:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Corporate Navigation Bar (Elcardo Dark Navy Blue) -->
+    <nav class="bg-elcardo-darkblue text-white sticky top-8 z-40 shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-1 font-semibold text-xs tracking-wide uppercase" id="desktop-nav-menu">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Right Nav Action -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#estimator" class="inline-flex items-center gap-1.5 bg-elcardo-red hover:bg-elcardo-darkred text-white px-3.5 py-1.5 rounded-lg text-xs font-bold shadow transition">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>Instant Estimator</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-nav-drawer" class="hidden lg:hidden bg-slate-900 border-t border-slate-800 px-4 py-4 space-y-2">
+            <div id="mobile-nav-links" class="space-y-1">
+                <!-- Populated dynamically -->
+            </div>
+            <div class="pt-3 border-t border-slate-800 flex flex-col gap-2">
+                <a id="mobile-wa-btn" href="https://wa.me/94774402271" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 text-white py-2.5 rounded-lg text-xs font-bold">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Body Container -->
+    <main class="flex-grow">
+
+        <!-- ============================================== -->
+        <!-- HERO BANNER CAROUSEL / SLIDER (Elcardo Style)  -->
+        <!-- ============================================== -->
+        <section id="home" class="relative bg-slate-100 text-slate-900 overflow-hidden min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] flex items-center">
+            
+            <!-- Slider Container -->
+            <div id="hero-slider-container" class="relative w-full h-full">
+                <!-- Slides injected dynamically via JS -->
+            </div>
+
+            <!-- Slider Arrows -->
+            <button id="slider-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-elcardo-red text-white flex items-center justify-center backdrop-blur-sm transition border border-white/20" aria-label="Previous Slide">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="slider-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/40 hover:bg-elcardo-red text-white flex items-center justify-center backdrop-blur-sm transition border border-white/20" aria-label="Next Slide">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Slide Indicators -->
+            <div id="slider-dots-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                <!-- Dots injected via JS -->
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TRUST & QUALITY BADGES STRIP                   -->
+        <!-- ============================================== -->
+        <section class="bg-elcardo-blue text-white py-8 border-b-4 border-elcardo-red shadow-inner">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="trust-badges-grid">
+                    <!-- Injected dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- ABOUT US & CORPORATE FABRICATION STANDARDS     -->
+        <!-- ============================================== -->
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Images Showcase -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative">
+                            <img id="about-img-1" src="images/factory_plant.jpg" alt="Shutter 2000 Engineering Fabrication" class="rounded-2xl shadow-2xl w-full h-80 sm:h-96 object-cover border-4 border-white" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80'">
+                            
+                            <!-- Floating Experience Pill -->
+                            <div class="absolute -bottom-6 -right-4 sm:-right-6 bg-elcardo-red text-white p-5 rounded-2xl shadow-xl border-4 border-white">
+                                <div class="text-3xl font-black font-heading" id="about-exp-years">24+</div>
+                                <div class="text-xs font-bold leading-tight uppercase tracking-wider" id="about-exp-text">Years of Engineering Excellence</div>
+                            </div>
+                        </div>
+
+                        <!-- Sub Image -->
+                        <div class="mt-8 grid grid-cols-2 gap-4">
+                            <img id="about-img-2" src="images/installation_crew.jpg" alt="Structural Assembly" class="rounded-xl h-36 w-full object-cover shadow border border-slate-200" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80'">
+                            <div class="bg-elcardo-lightbg p-4 rounded-xl border border-blue-100 flex flex-col justify-center">
+                                <span class="text-elcardo-blue font-extrabold text-xs uppercase" id="about-cert-badge">ISO 9001 Standards</span>
+                                <p class="text-[11px] text-slate-600 font-medium mt-1">Direct importers of heavy-duty copper coil motors and high-yield zinc-alum steel.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Text Content -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-elcardo-blue text-xs font-bold uppercase tracking-wider border border-blue-200" id="about-badge">
+                            Fabrication Excellence Since 2000
+                        </div>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue leading-tight" id="about-title">
+                            Engineering Total Entrance & Security Solutions Across Sri Lanka
+                        </h2>
+                        <p class="text-slate-500 font-semibold text-sm" id="about-subtitle">
+                            Delivering unmatched craftsmanship, structural durability, and next-generation smart automation.
+                        </p>
+                        <p class="text-slate-600 text-sm leading-relaxed" id="about-desc1">
+                            Established in the year 2000, Shutter 2000 International (Pvt) Ltd has grown into one of Sri Lanka's foremost engineering fabricators...
+                        </p>
+                        <p class="text-slate-600 text-sm leading-relaxed" id="about-desc2">
+                            From commercial showroom transparent polycarbonate roller doors to heavy industrial steel sectional gates...
+                        </p>
+
+                        <!-- Key Checklist -->
+                        <div class="pt-2">
+                            <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-3 text-elcardo-red">Why Sri Lanka's Top Builders Rely On Us:</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="about-checklist-container">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex flex-wrap items-center gap-4">
+                            <a href="#contact" class="inline-flex items-center gap-2 bg-elcardo-blue hover:bg-elcardo-darkblue text-white px-6 py-3.5 rounded-xl font-bold text-xs shadow-md transition">
+                                <span>Visit Ratmalana Facility</span>
+                                <i class="fa-solid fa-arrow-right text-amber-400"></i>
+                            </a>
+                            <a id="about-hotline-btn" href="tel:+94774402271" class="inline-flex items-center gap-2 border-2 border-elcardo-blue text-elcardo-blue hover:bg-blue-50 px-6 py-3.5 rounded-xl font-bold text-xs transition">
+                                <i class="fa-solid fa-phone"></i>
+                                <span id="about-hotline-text">+94 77 440 2271</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PRODUCTS & SOLUTIONS CATALOGUE (Elcardo Grid)  -->
+        <!-- ============================================== -->
+        <section id="products" class="py-20 bg-elcardo-lightbg border-y border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-elcardo-blue text-xs font-bold uppercase tracking-wider">
+                        Engineered Product Lineup
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue">
+                        Total Door & Entrance Automation Systems
+                    </h2>
+                    <p class="text-slate-600 text-sm">
+                        High-tensile roller shutters, motorized security gates, and smartphone-controlled automation systems built to the highest architectural standards.
+                    </p>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10" id="product-category-filters">
+                    <!-- Injected dynamically -->
+                </div>
+
+                <!-- Products Grid -->
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- ARCHITECTURAL ZINC-ALUM COLOR SELECTOR         -->
+        <!-- ============================================== -->
+        <section id="colors" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-elcardo-navy text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-800">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        
+                        <!-- Left Info & Color Swatches -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                                Colorbond Finishes
+                            </div>
+                            <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white" id="color-title">
+                                Zinc-Alum & Colorbond Architectural Color Palette
+                            </h2>
+                            <p class="text-slate-300 text-sm" id="color-subtitle">
+                                Choose from our factory-finished, UV-resistant oven-baked colorbond finishes designed to match your building facade.
+                            </p>
+
+                            <!-- Color Swatches Grid -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2" id="color-swatches-container">
+                                <!-- Injected dynamically -->
+                            </div>
+
+                            <!-- Selected Color Detail Box -->
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-700 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-400 uppercase font-semibold">Active Color Selection:</span>
+                                    <h4 id="active-color-name" class="text-base font-extrabold text-amber-400">Caulfield Green (RAL-6005)</h4>
+                                </div>
+                                <a id="btn-inquire-color-wa" href="https://wa.me/94774402271" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <span>Inquire Color</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Interactive Door Visual Preview -->
+                        <div class="lg:col-span-5 flex flex-col items-center">
+                            <div class="w-full max-w-sm bg-slate-900 border-4 border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4">
+                                <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
+                                    <span class="font-bold text-white uppercase">Live Door Visualizer</span>
+                                    <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Factory Oven-Baked</span>
+                                </div>
+
+                                <!-- Dynamic Preview Canvas Graphic -->
+                                <div id="door-preview-box" class="h-64 rounded-xl border-2 border-slate-700 flex flex-col justify-between p-3 transition-all duration-500 relative overflow-hidden" style="background-color: #1e3f20;">
+                                    <!-- Slat Lines Graphic -->
+                                    <div class="absolute inset-0 opacity-20 pointer-events-none" style="background: repeating-linear-gradient(180deg, #000, #000 8px, transparent 8px, transparent 16px);"></div>
+                                    
+                                    <div class="relative z-10 flex justify-between items-center text-[10px] text-white/80 font-bold bg-black/30 px-2 py-1 rounded">
+                                        <span>SHUTTER 2000</span>
+                                        <span id="preview-color-code">RAL-6005</span>
+                                    </div>
+                                    
+                                    <div class="relative z-10 text-center bg-black/40 backdrop-blur-sm py-2 px-3 rounded-lg">
+                                        <div class="text-xs font-black text-white" id="preview-color-name">Caulfield Green</div>
+                                        <div class="text-[10px] text-slate-300">0.50mm High-Tensile Zinc-Alum</div>
+                                    </div>
+                                </div>
+
+                                <p class="text-[11px] text-center text-slate-400">Custom dual-tone and woodgrain textured coatings available upon request.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- INTERACTIVE DOOR ESTIMATOR & CALCULATOR        -->
+        <!-- ============================================== -->
+        <section id="estimator" class="py-20 bg-slate-100 border-y border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-elcardo-red/10 text-elcardo-red text-xs font-bold uppercase tracking-wider">
+                            Interactive Tool
+                        </div>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue leading-tight">
+                            Instant Door & Slat Dimension Calculator
+                        </h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Configure your approximate doorway dimensions and operational preferences to receive a tailored specifications summary and direct WhatsApp quote instantly.
+                        </p>
+
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="w-7 h-7 rounded-lg bg-elcardo-blue text-white flex items-center justify-center font-bold text-xs mt-0.5">1</div>
+                                <div class="text-xs text-slate-600">
+                                    <strong class="text-slate-900 block">Select Profile:</strong> Choose between Zinc-Alum, Perforated, Polycarbonate, or Gate.
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="w-7 h-7 rounded-lg bg-elcardo-blue text-white flex items-center justify-center font-bold text-xs mt-0.5">2</div>
+                                <div class="text-xs text-slate-600">
+                                    <strong class="text-slate-900 block">Enter Width & Height:</strong> Provide opening dimensions in feet for load assessment.
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="w-7 h-7 rounded-lg bg-elcardo-blue text-white flex items-center justify-center font-bold text-xs mt-0.5">3</div>
+                                <div class="text-xs text-slate-600">
+                                    <strong class="text-slate-900 block">Direct Engineering Dispatch:</strong> 1-Click forwarding to Ratmalana engineering desk on WhatsApp.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Calculator Card -->
+                    <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                        <form id="estimator-form" class="space-y-5">
+                            
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">1. Select Door / Shutter Type</label>
+                                <select id="calc-door-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 text-sm font-semibold focus:ring-2 focus:ring-elcardo-blue focus:outline-none">
+                                    <option value="Zinc-Alum Motorized Roller Door">Zinc-Alum Motorized Roller Door (0.50mm / 0.60mm)</option>
+                                    <option value="Perforated / See-Through Security Grill Shutter">Perforated / See-Through Security Grill Shutter</option>
+                                    <option value="Crystal Clear Polycarbonate Roller Door">Crystal Clear Polycarbonate Roller Door</option>
+                                    <option value="Motorized Retractable Security Gate (SS 304)">Motorized Retractable Security Gate (Stainless Steel 304)</option>
+                                    <option value="Aluminium Alloy Expandable Gate">Aluminium Alloy Expandable Gate</option>
+                                    <option value="High-Speed Rapid PVC Rollup Door">High-Speed Rapid PVC Rollup Door</option>
+                                    <option value="Smart Wi-Fi Smartphone Motor Retrofit Kit">Smart Wi-Fi Smartphone Motor Retrofit Kit</option>
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">2. Opening Width (Feet)</label>
+                                    <div class="relative">
+                                        <input type="number" id="calc-width" min="3" max="50" step="0.5" value="12" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 text-sm font-bold focus:ring-2 focus:ring-elcardo-blue focus:outline-none pr-12">
+                                        <span class="absolute right-4 top-3 text-slate-400 text-xs font-bold">FT</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">3. Opening Height (Feet)</label>
+                                    <div class="relative">
+                                        <input type="number" id="calc-height" min="3" max="40" step="0.5" value="10" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 text-sm font-bold focus:ring-2 focus:ring-elcardo-blue focus:outline-none pr-12">
+                                        <span class="absolute right-4 top-3 text-slate-400 text-xs font-bold">FT</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">4. Automation / Motor Mode</label>
+                                    <select id="calc-motor-mode" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-elcardo-blue focus:outline-none">
+                                        <option value="Motorized with Wireless Remotes + Manual Override">Motorized with Wireless Remotes (Standard)</option>
+                                        <option value="Smart Wi-Fi Mobile App + Wireless Remotes">Smart Wi-Fi Mobile App + Wireless Remotes</option>
+                                        <option value="GSM Phone Call + RFID Access Control">GSM Phone Call + RFID Access Control</option>
+                                        <option value="Manual Push-Up Spring Balanced">Manual Push-Up Spring Balanced</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1.5">5. Installation Province</label>
+                                    <select id="calc-province" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-elcardo-blue focus:outline-none">
+                                        <option value="Western Province (Colombo, Gampaha, Kalutara)">Western Province (Colombo, Gampaha, Kalutara)</option>
+                                        <option value="Central Province (Kandy, Matale, Nuwara Eliya)">Central Province (Kandy, Matale, Nuwara Eliya)</option>
+                                        <option value="Southern Province (Galle, Matara, Hambantota)">Southern Province (Galle, Matara, Hambantota)</option>
+                                        <option value="North Western Province (Kurunegala, Puttalam)">North Western Province (Kurunegala, Puttalam)</option>
+                                        <option value="Other Provinces (Islandwide Delivery)">Other Provinces (Islandwide Delivery)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Live Spec Output -->
+                            <div class="bg-elcardo-darkblue text-white p-5 rounded-2xl space-y-2.5">
+                                <div class="flex justify-between items-center text-xs text-blue-200">
+                                    <span>Calculated Surface Area:</span>
+                                    <span id="calc-area-val" class="text-amber-400 font-extrabold text-sm">120.0 Sq.Ft</span>
+                                </div>
+                                <div class="flex justify-between items-center text-xs text-blue-200">
+                                    <span>Recommended Motor Load:</span>
+                                    <span id="calc-motor-val" class="text-emerald-400 font-bold text-sm">600kg Industrial Center/Tubular Motor</span>
+                                </div>
+                                <div class="border-t border-blue-900/60 pt-2.5 flex justify-between items-center text-xs text-slate-300">
+                                    <span>Warranty Coverage:</span>
+                                    <span class="text-amber-400 font-bold">10-Year Panel / 5-Year Motor</span>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btn-estimator-wa" class="w-full inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-4 px-6 rounded-xl shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5 text-sm">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Send Specification to WhatsApp for Formal Quotation</span>
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- FACTORY & QUALITY STANDARDS (Elcardo Style)    -->
+        <!-- ============================================== -->
+        <section id="factory" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-elcardo-blue text-xs font-bold uppercase tracking-wider" id="factory-badge">
+                        Industrial Quality & Engineering Rigor
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue" id="factory-title">
+                        Ratmalana Manufacturing Complex & Direct Import Standards
+                    </h2>
+                    <p class="text-slate-600 text-sm" id="factory-desc">
+                        Our dedicated 15,000 sq.ft fabrication workshop houses state-of-the-art roll forming lines, automated powder coating booths, and advanced motor dynamometer test benches.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="factory-features-grid">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- BRANCH & SHOWROOM NETWORK                      -->
+        <!-- ============================================== -->
+        <section id="branches" class="py-20 bg-elcardo-lightbg border-y border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-elcardo-red/10 text-elcardo-red text-xs font-bold uppercase tracking-wider">
+                        Islandwide Footprint
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue">
+                        Engineering Hubs & Regional Service Centers
+                    </h2>
+                    <p class="text-slate-600 text-sm">
+                        With our centralized Ratmalana plant and mobile technical units, we serve all 9 provinces with rapid deployment and on-site support.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="branches-grid">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PROJECT GALLERY & PORTFOLIO                    -->
+        <!-- ============================================== -->
+        <section id="gallery" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-elcardo-blue text-xs font-bold uppercase tracking-wider">
+                        Project Showcase
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-elcardo-darkblue">
+                        Installed Solutions Across Sri Lanka
+                    </h2>
+                    <p class="text-slate-600 text-sm">
+                        Explore our portfolio of industrial warehouses, commercial retail storefronts, and premium automated gates.
+                    </p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- CLIENT TESTIMONIALS & TRUST                    -->
+        <!-- ============================================== -->
+        <section class="py-20 bg-elcardo-navy text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                        Client Testimonials
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+                        Trusted by Leading Contractors & Property Owners
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-grid">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PROMOTIONAL CALL TO ACTION BANNER              -->
+        <!-- ============================================== -->
+        <section class="py-16 bg-gradient-to-r from-elcardo-darkblue via-elcardo-blue to-elcardo-darkred text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold" id="cta-title">
+                    Ready to Upgrade Your Property With Sri Lanka's Most Reliable Roller Doors?
+                </h2>
+                <p class="text-blue-100 text-sm sm:text-base max-w-3xl mx-auto" id="cta-subtitle">
+                    Contact our senior engineering team today for a free on-site physical measurement, structural consultation, and formal quotation.
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-4 pt-2">
+                    <a id="cta-btn-link" href="#contact" class="inline-flex items-center gap-2 bg-white text-elcardo-darkblue hover:bg-slate-100 font-extrabold px-8 py-4 rounded-xl shadow-xl transition transform hover:-translate-y-0.5 text-sm">
+                        <span id="cta-btn-text">Request Free Site Measurement</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a id="cta-phone-link" href="tel:+94774402271" class="inline-flex items-center gap-2 bg-elcardo-red hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition transform hover:-translate-y-0.5 text-sm">
+                        <i class="fa-solid fa-phone"></i>
+                        <span id="cta-phone-text">+94 77 440 2271</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- CONTACT & INTERACTIVE WHATSAPP INQUIRY         -->
+        <!-- ============================================== -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left Contact Info Cards -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-elcardo-blue text-xs font-bold uppercase tracking-wider mb-2">
+                                Head Office & Workshop
+                            </div>
+                            <h2 class="font-heading text-3xl font-extrabold text-elcardo-darkblue">
+                                Get In Touch With Our Engineers
+                            </h2>
+                            <p class="text-slate-600 text-sm mt-2">
+                                For inquiries, custom fabrication drawings, or 24/7 breakdown dispatch, contact us via phone, WhatsApp, or email.
+                            </p>
+                        </div>
+
+                        <!-- Contact Badges -->
+                        <div class="space-y-3.5">
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-elcardo-lightbg border border-slate-200">
+                                <div class="w-11 h-11 rounded-xl bg-elcardo-blue text-white flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-slate-400">Engineering Complex & Factory</h4>
+                                    <p class="text-slate-900 font-bold text-sm mt-0.5" id="contact-address">61/24 Sri Sumangala Road, Ratmalana, Sri Lanka</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-elcardo-lightbg border border-slate-200">
+                                <div class="w-11 h-11 rounded-xl bg-elcardo-red text-white flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-slate-400">24/7 Emergency Hotline</h4>
+                                    <a id="contact-phone-link" href="tel:+94774402271" class="text-slate-900 font-extrabold text-base hover:text-elcardo-red transition block mt-0.5">
+                                        <span id="contact-phone">+94 77 440 2271</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-elcardo-lightbg border border-slate-200">
+                                <div class="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-slate-400">Official Inquiries</h4>
+                                    <a id="contact-email-link" href="mailto:info@shutter2000.lk" class="text-slate-900 font-bold text-sm hover:text-elcardo-blue transition block mt-0.5">
+                                        <span id="contact-email">info@shutter2000.lk</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct WhatsApp Banner Card -->
+                        <a id="contact-direct-wa-btn" href="https://wa.me/94774402271" target="_blank" class="flex items-center justify-between p-5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg transition transform hover:-translate-y-0.5">
+                            <div class="flex items-center gap-3.5">
+                                <i class="fa-brands fa-whatsapp text-3xl"></i>
+                                <div>
+                                    <div class="font-extrabold text-sm">Direct WhatsApp Desk</div>
+                                    <div class="text-[11px] text-emerald-100">Live engineer response within 10 minutes</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-lg"></i>
+                        </a>
+
+                    </div>
+
+                    <!-- Right Interactive Inquiry Form -->
+                    <div class="lg:col-span-7 bg-elcardo-lightbg p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                        <div class="mb-6">
+                            <h3 class="font-heading text-2xl font-extrabold text-elcardo-darkblue">Send An Instant Order Inquiry</h3>
+                            <p class="text-slate-600 text-xs mt-1">Fill out the details below. Submitting will format and forward your exact requirements directly to our WhatsApp support team.</p>
+                        </div>
+
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Name *</label>
+                                    <input type="text" id="cust-name" required placeholder="e.g. Ruwan Silva" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Phone / WhatsApp Number *</label>
+                                    <input type="tel" id="cust-phone" required placeholder="e.g. 0771234567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm bg-white">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Project City / Town *</label>
+                                    <input type="text" id="cust-city" required placeholder="e.g. Ratmalana, Colombo, Kandy" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Product of Interest *</label>
+                                    <select id="cust-product" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm font-semibold bg-white">
+                                        <option value="Zinc-Alum Motorized Roller Door">Zinc-Alum Motorized Roller Door</option>
+                                        <option value="Perforated Showroom Roller Shutter">Perforated Showroom Roller Shutter</option>
+                                        <option value="Polycarbonate Crystal Clear Roller Door">Polycarbonate Crystal Clear Roller Door</option>
+                                        <option value="Motorized Retractable Security Gate">Motorized Retractable Security Gate</option>
+                                        <option value="High-Speed Rapid PVC Rollup Door">High-Speed Rapid PVC Rollup Door</option>
+                                        <option value="Smart Wi-Fi Smartphone Controller">Smart Wi-Fi Smartphone Controller</option>
+                                        <option value="Motor Replacement / Emergency Repair">Motor Replacement / Emergency Repair</option>
+                                        <option value="Spare Parts & Remotes">Spare Parts & Remotes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Approximate Dimensions (Width x Height)</label>
+                                <input type="text" id="cust-dims" placeholder="e.g. Width: 12ft, Height: 10ft" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm bg-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Project Notes / Requirements</label>
+                                <textarea id="cust-notes" rows="3" placeholder="Tell us about the site (e.g. residential villa, commercial warehouse, remote control quantity, color preference)..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-elcardo-blue focus:outline-none text-slate-900 text-sm bg-white"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-4 px-6 rounded-xl shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5 text-sm">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                <span>Submit & Forward Quote to WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================== -->
+    <!-- PRODUCT QUICK-VIEW MODAL                       -->
+    <!-- ============================================== -->
+    <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[90vh]">
+            <div class="relative h-64 bg-slate-900">
+                <img id="modal-prod-img" src="" alt="Product" class="w-full h-full object-cover">
+                <button id="modal-prod-close" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-elcardo-red flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-4 left-4 bg-elcardo-red text-white text-[11px] font-black px-3 py-1 rounded-full uppercase" id="modal-prod-badge">
+                    Specification
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-xs font-bold text-elcardo-blue uppercase" id="modal-prod-category">Roller Doors</span>
+                        <h3 class="font-heading text-2xl font-extrabold text-slate-900" id="modal-prod-title">Product Title</h3>
+                        <span class="text-xs text-slate-400 font-bold" id="modal-prod-code">S2K-RD-01</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200" id="modal-prod-warranty">10-Year Warranty</span>
+                    </div>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed" id="modal-prod-desc"></p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                    <h5 class="text-xs font-bold uppercase text-slate-700">Motor & Automation Specification:</h5>
+                    <p class="text-xs text-slate-600 font-medium" id="modal-prod-motorspecs"></p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase text-slate-700 mb-2">Key Engineering Features:</h5>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="modal-prod-features"></div>
+                </div>
+                <div class="pt-3 border-t border-slate-100 flex justify-end">
+                    <a id="modal-prod-wa-btn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-3 rounded-xl text-xs shadow-md transition">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Inquire About This Product</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- GALLERY LIGHTBOX MODAL                         -->
+    <!-- ============================================== -->
+    <div id="gallery-lightbox-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+            <div class="relative">
+                <button id="lightbox-close-btn" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-800 text-white hover:bg-elcardo-red flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <img id="lightbox-img" src="" alt="Project Photo" class="w-full max-h-[70vh] object-contain bg-black">
+            </div>
+            <div class="p-5 text-white bg-slate-900 border-t border-slate-800 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                <div>
+                    <h4 id="lightbox-title" class="font-bold text-lg">Project Title</h4>
+                    <span id="lightbox-location" class="text-xs text-amber-400 font-semibold uppercase">Location</span>
+                </div>
+                <a id="lightbox-wa-btn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition self-start sm:self-auto">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Inquire Design Quote</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Action Button -->
+    <a id="floating-whatsapp-btn" href="https://wa.me/94774402271" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-600/50 hover:scale-110 transition duration-300 group" aria-label="WhatsApp Contact">
+        <span class="absolute w-full h-full rounded-full bg-emerald-500 pulse-ring pointer-events-none"></span>
+        <i class="fa-brands fa-whatsapp text-3xl sm:text-4xl"></i>
+        <span class="absolute right-full mr-3 bg-slate-900 text-white text-xs font-bold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
+            Chat on WhatsApp (24/7)
+        </span>
+    </a>
+
+    <!-- ============================================== -->
+    <!-- CORPORATE FOOTER (Elcardo Style)               -->
+    <!-- ============================================== -->
+    <footer class="bg-elcardo-navy text-slate-400 pt-16 pb-12 border-t-4 border-elcardo-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- Col 1: About & Identity -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-elcardo-red flex items-center justify-center text-white font-black shadow-lg">
+                            <i class="fa-solid fa-bars-staggered rotate-90 text-amber-400"></i>
+                        </div>
+                        <div>
+                            <span class="font-heading font-extrabold text-xl text-white tracking-tight" id="footer-brand-name">SHUTTER 2000</span>
+                            <span class="block text-[10px] text-amber-400 font-bold uppercase tracking-widest">INTERNATIONAL</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed" id="footer-tagline">
+                        Sri Lanka's leading engineering fabricators and direct importers of motorized roller shutters, retractable security gates, rapid high-speed doors, and smart access control systems.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a id="footer-social-fb" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-elcardo-blue hover:text-white flex items-center justify-center text-slate-300 transition text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a id="footer-social-insta" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-elcardo-blue hover:text-white flex items-center justify-center text-slate-300 transition text-xs"><i class="fa-brands fa-instagram"></i></a>
+                        <a id="footer-social-yt" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-elcardo-red hover:text-white flex items-center justify-center text-slate-300 transition text-xs"><i class="fa-brands fa-youtube"></i></a>
+                        <a id="footer-social-li" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-elcardo-blue hover:text-white flex items-center justify-center text-slate-300 transition text-xs"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a id="footer-social-wa" href="https://wa.me/94774402271" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-slate-300 transition text-xs"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Products -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white border-l-2 border-elcardo-red pl-2">Product Lineup</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#products" class="hover:text-amber-400 transition">Roller Doors & Shutters</a></li>
+                        <li><a href="#products" class="hover:text-amber-400 transition">Retractable Security Gates</a></li>
+                        <li><a href="#products" class="hover:text-amber-400 transition">High-Speed PVC Doors</a></li>
+                        <li><a href="#products" class="hover:text-amber-400 transition">Smart Wi-Fi Controllers</a></li>
+                        <li><a href="#colors" class="hover:text-amber-400 transition">Colorbond Palette</a></li>
+                        <li><a href="#products" class="hover:text-amber-400 transition">Motors & Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Links -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white border-l-2 border-elcardo-red pl-2">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#about" class="hover:text-amber-400 transition">About Our Plant</a></li>
+                        <li><a href="#estimator" class="hover:text-amber-400 transition">Door Estimator</a></li>
+                        <li><a href="#factory" class="hover:text-amber-400 transition">Factory Standards</a></li>
+                        <li><a href="#branches" class="hover:text-amber-400 transition">Branch Network</a></li>
+                        <li><a href="#gallery" class="hover:text-amber-400 transition">Project Gallery</a></li>
+                        <li><a href="admin.html" class="text-amber-400 hover:text-amber-300 transition font-bold flex items-center gap-1"><i class="fa-solid fa-lock text-[10px]"></i> Staff Admin Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Head Office Contact -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white border-l-2 border-elcardo-red pl-2">Main Engineering Hub</h4>
+                    <p class="text-xs text-slate-300" id="footer-address">61/24 Sri Sumangala Road, Ratmalana</p>
+                    <p class="text-xs font-bold text-white pt-1" id="footer-phone">+94 77 440 2271</p>
+                    <p class="text-xs text-slate-300" id="footer-email">info@shutter2000.lk</p>
+                    <div class="pt-2">
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[11px] font-bold border border-emerald-800">
+                            <i class="fa-solid fa-check"></i> Islandwide Fleet Ready
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal & Admin Link -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; <span id="current-year">2026</span> Shutter 2000 International (Pvt) Ltd. All Rights Reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="admin.html" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1 font-semibold">
+                        <i class="fa-solid fa-gear text-[10px]"></i> Client Admin CMS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Data Layer & Script Engine -->
+    <script src="data.js"></script>
+    <script>
+        let currentSlideIndex = 0;
+        let slideInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = getSiteData();
+            renderAllSections(data);
+            initSlider();
+            initEstimator();
+            initColorSelector();
+            initEvents();
+        });
+
+        // Listen for live cross-tab changes
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'shutter2000_elcardo_style_data') {
+                renderAllSections(getSiteData());
+            }
+        });
+
+        /**
+         * Master rendering function
+         */
+        function renderAllSections(data) {
+            const tb = data.topBar || {};
+            const br = data.branding || {};
+            const abt = data.about || {};
+            const cont = data.contact || {};
+            const cta = data.ctaBanner || {};
+            const rawWa = br.hotlineRaw || "94774402271";
+
+            // Top Bar
+            document.getElementById('top-address').textContent = tb.address || "61/24 Sri Sumangala Road, Ratmalana, Sri Lanka";
+            document.getElementById('top-hours').textContent = tb.workingHours || "Mon - Sat: 8.00 AM - 6.00 PM | 24/7 Breakdown Dispatch";
+            document.getElementById('top-notice').textContent = tb.notice || "🔥 Islandwide Delivery & Free On-Site Measurement!";
+            
+            if (tb.socialLinks) {
+                document.getElementById('top-social-fb').href = tb.socialLinks.facebook || "#";
+                document.getElementById('top-social-insta').href = tb.socialLinks.instagram || "#";
+                document.getElementById('top-social-yt').href = tb.socialLinks.youtube || "#";
+                document.getElementById('top-social-li').href = tb.socialLinks.linkedin || "#";
+                document.getElementById('top-social-wa').href = tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`;
+            }
+
+            // Header
+            document.getElementById('header-brand-name').textContent = br.shortName || "SHUTTER 2000";
+            document.getElementById('header-tagline').textContent = br.tagline || "Total Door Solutions & Industrial Fabrication";
+            document.getElementById('header-headoffice').textContent = br.headOffice || "Ratmalana Main Engineering Complex";
+            document.getElementById('header-hotline-phone').textContent = br.hotlinePhone || "+94 77 440 2271";
+            document.getElementById('header-hotline-link').href = `tel:${br.hotlineRaw || "+94774402271"}`;
+            document.getElementById('header-wa-quote-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I would like to request a quotation.");
+
+            // Navigation
+            renderNavMenu(data.navMenu || []);
+
+            // Hero Slider
+            renderHeroSlides(data.heroSlides || [], rawWa);
+
+            // Trust Badges
+            renderTrustBadges(data.trustBadges || []);
+
+            // About Us Section
+            if (abt.badge) document.getElementById('about-badge').textContent = abt.badge;
+            if (abt.title) document.getElementById('about-title').textContent = abt.title;
+            if (abt.subtitle) document.getElementById('about-subtitle').textContent = abt.subtitle;
+            if (abt.desc1) document.getElementById('about-desc1').textContent = abt.desc1;
+            if (abt.desc2) document.getElementById('about-desc2').textContent = abt.desc2;
+            if (abt.experienceYears) document.getElementById('about-exp-years').textContent = abt.experienceYears;
+            if (abt.experienceText) document.getElementById('about-exp-text').textContent = abt.experienceText;
+            if (abt.certBadge) document.getElementById('about-cert-badge').textContent = abt.certBadge;
+            if (abt.image1) document.getElementById('about-img-1').src = abt.image1;
+            if (abt.image2) document.getElementById('about-img-2').src = abt.image2;
+            document.getElementById('about-hotline-btn').href = `tel:${br.hotlineRaw || "+94774402271"}`;
+            document.getElementById('about-hotline-text').textContent = br.hotlinePhone || "+94 77 440 2271";
+
+            // About Checklist
+            const chkContainer = document.getElementById('about-checklist-container');
+            chkContainer.innerHTML = '';
+            (abt.checklist || []).forEach(item => {
+                const d = document.createElement('div');
+                d.className = "flex items-center gap-2 text-xs text-slate-700 font-semibold";
+                d.innerHTML = `<i class="fa-solid fa-circle-check text-elcardo-blue text-sm"></i> <span>${item}</span>`;
+                chkContainer.appendChild(d);
+            });
+
+            // Product Categories & Products
+            renderCategories(data.categories || []);
+            renderProducts(data.products || [], 'all', rawWa);
+
+            // Factory Standards
+            const fs = data.factoryStandards || {};
+            if (fs.badge) document.getElementById('factory-badge').textContent = fs.badge;
+            if (fs.title) document.getElementById('factory-title').textContent = fs.title;
+            if (fs.description) document.getElementById('factory-desc').textContent = fs.description;
+            renderFactoryFeatures(fs.features || []);
+
+            // Branch Network
+            renderBranches(data.branches || []);
+
+            // Gallery
+            renderGallery(data.gallery || [], rawWa);
+
+            // Testimonials
+            renderTestimonials(data.testimonials || []);
+
+            // CTA Banner
+            if (cta.title) document.getElementById('cta-title').textContent = cta.title;
+            if (cta.subtitle) document.getElementById('cta-subtitle').textContent = cta.subtitle;
+            if (cta.buttonText) document.getElementById('cta-btn-text').textContent = cta.buttonText;
+            if (cta.buttonLink) document.getElementById('cta-btn-link').href = cta.buttonLink;
+            if (cta.phone) {
+                document.getElementById('cta-phone-text').textContent = cta.phone;
+                document.getElementById('cta-phone-link').href = `tel:${rawWa}`;
+            }
+
+            // Contact Section
+            document.getElementById('contact-address').textContent = cont.address || tb.address;
+            document.getElementById('contact-phone').textContent = cont.phone || br.hotlinePhone;
+            document.getElementById('contact-phone-link').href = `tel:${cont.phoneRaw || rawWa}`;
+            document.getElementById('contact-email').textContent = cont.email || tb.email;
+            document.getElementById('contact-email-link').href = `mailto:${cont.email || tb.email}`;
+            document.getElementById('contact-direct-wa-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I am inquiring from your website.");
+            document.getElementById('floating-whatsapp-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I need assistance with door automation.");
+
+            // Footer
+            document.getElementById('footer-brand-name').textContent = br.shortName || "SHUTTER 2000";
+            document.getElementById('footer-tagline').textContent = br.subtagline || br.tagline || "";
+            document.getElementById('footer-address').textContent = cont.address || tb.address;
+            document.getElementById('footer-phone').textContent = cont.phone || br.hotlinePhone;
+            document.getElementById('footer-email').textContent = cont.email || tb.email;
+
+            if (tb.socialLinks) {
+                document.getElementById('footer-social-fb').href = tb.socialLinks.facebook || "#";
+                document.getElementById('footer-social-insta').href = tb.socialLinks.instagram || "#";
+                document.getElementById('footer-social-yt').href = tb.socialLinks.youtube || "#";
+                document.getElementById('footer-social-li').href = tb.socialLinks.linkedin || "#";
+                document.getElementById('footer-social-wa').href = tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`;
+            }
+        }
+
+        /**
+         * Navigation Rendering
+         */
+        function renderNavMenu(menu) {
+            const deskContainer = document.getElementById('desktop-nav-menu');
+            const mobContainer = document.getElementById('mobile-nav-links');
+            deskContainer.innerHTML = '';
+            mobContainer.innerHTML = '';
+
+            menu.forEach((item, idx) => {
+                // Desktop link
+                const a = document.createElement('a');
+                a.href = item.link;
+                a.className = "px-3.5 py-4 hover:text-amber-400 hover:border-b-2 hover:border-elcardo-red transition flex items-center";
+                a.textContent = item.label;
+                deskContainer.appendChild(a);
+
+                // Mobile link
+                const mobA = document.createElement('a');
+                mobA.href = item.link;
+                mobA.className = "block py-2 text-sm text-slate-200 hover:text-amber-400";
+                mobA.textContent = item.label;
+                mobA.addEventListener('click', () => {
+                    document.getElementById('mobile-nav-drawer').classList.add('hidden');
+                });
+                mobContainer.appendChild(mobA);
+            });
+        }
+
+        /**
+         * Hero Slider Rendering & Animation
+         */
+        function renderHeroSlides(slides, rawWa) {
+            const container = document.getElementById('hero-slider-container');
+            const dotsContainer = document.getElementById('slider-dots-container');
+            container.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            slides.forEach((slide, idx) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = `hero-slide w-full h-full flex items-center py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 ${idx === 0 ? 'active-slide' : 'hidden-slide'}`;
+                slideDiv.setAttribute('data-slide-index', idx);
+
+                const cta2Link = slide.cta2Link && slide.cta2Link.startsWith('https://wa.me') ? getWhatsAppUrl(rawWa, `Hello, I saw "${slide.title}" on your website and want a quotation.`) : (slide.cta2Link || '#contact');
+                const titleHtml = (slide.title || '').replace(/\n/g, '<br>');
+
+                slideDiv.innerHTML = `
+                    <div class="absolute inset-0 z-0 overflow-hidden">
+                        <img src="${slide.bgImage}" alt="${slide.title}" class="w-full h-full object-cover object-center" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=1920&q=80'">
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent lg:w-3/5"></div>
+                    </div>
+                    
+                    <div class="max-w-7xl mx-auto w-full relative z-10">
+                        <div class="max-w-xl space-y-4 sm:space-y-5 bg-white/70 lg:bg-transparent p-6 sm:p-8 lg:p-0 rounded-3xl backdrop-blur-sm lg:backdrop-blur-0 shadow-lg lg:shadow-none">
+                            <div class="inline-flex items-center text-xs font-extrabold text-slate-800 tracking-wider uppercase pl-2.5 border-l-4 border-orange-500">
+                                ${slide.badge}
+                            </div>
+                            <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-black text-elcardo-darkblue uppercase tracking-tight leading-[1.05]">
+                                ${titleHtml}
+                            </h1>
+                            <p class="text-slate-800 text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wide">
+                                ${slide.subtitle}
+                            </p>
+                            ${slide.description ? `<p class="text-slate-600 text-xs sm:text-sm leading-relaxed">${slide.description}</p>` : ''}
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <a href="${slide.cta1Link || '#products'}" class="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white font-extrabold px-6 sm:px-8 py-3.5 rounded-lg shadow-md transition transform hover:-translate-y-0.5 text-xs uppercase tracking-wider">
+                                    <span>${slide.cta1Text || 'Explore More'}</span>
+                                </a>
+                                <a href="${cta2Link}" class="inline-flex items-center justify-center bg-elcardo-darkblue hover:bg-blue-900 text-white font-extrabold px-6 sm:px-8 py-3.5 rounded-lg shadow-md transition transform hover:-translate-y-0.5 text-xs uppercase tracking-wider">
+                                    <span>${slide.cta2Text || 'Get In Touch'}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(slideDiv);
+
+                // Dot (Elcardo circular outline ring style)
+                const dot = document.createElement('button');
+                dot.className = `w-4 h-4 rounded-full border-2 transition-all ${idx === 0 ? 'bg-white border-white scale-110 shadow' : 'bg-white/40 border-white/80 hover:bg-white'}`;
+                dot.setAttribute('aria-label', `Slide ${idx + 1}`);
+                dot.addEventListener('click', () => goToSlide(idx));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function initSlider() {
+            document.getElementById('slider-prev-btn').addEventListener('click', () => {
+                const slides = document.querySelectorAll('.hero-slide');
+                if (!slides.length) return;
+                currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                updateSlideView();
+            });
+
+            document.getElementById('slider-next-btn').addEventListener('click', () => {
+                const slides = document.querySelectorAll('.hero-slide');
+                if (!slides.length) return;
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                updateSlideView();
+            });
+
+            startSlideTimer();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlideView();
+            startSlideTimer();
+        }
+
+        function updateSlideView() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.getElementById('slider-dots-container').children;
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlideIndex) {
+                    slide.classList.remove('hidden-slide');
+                    slide.classList.add('active-slide');
+                } else {
+                    slide.classList.remove('active-slide');
+                    slide.classList.add('hidden-slide');
+                }
+            });
+
+            Array.from(dots).forEach((dot, i) => {
+                if (i === currentSlideIndex) {
+                    dot.className = 'w-4 h-4 rounded-full border-2 bg-white border-white scale-110 shadow transition-all';
+                } else {
+                    dot.className = 'w-4 h-4 rounded-full border-2 bg-white/40 border-white/80 hover:bg-white transition-all';
+                }
+            });
+        }
+
+        function startSlideTimer() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                const slides = document.querySelectorAll('.hero-slide');
+                if (!slides.length) return;
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                updateSlideView();
+            }, 6000);
+        }
+
+        /**
+         * Trust Badges
+         */
+        function renderTrustBadges(badges) {
+            const container = document.getElementById('trust-badges-grid');
+            container.innerHTML = '';
+
+            badges.forEach(b => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-4 bg-blue-950/40 p-4 rounded-2xl border border-blue-400/20";
+                div.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+                        <i class="${b.icon}"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-extrabold text-sm text-white">${b.title}</h4>
+                        <p class="text-xs text-blue-200 mt-0.5 leading-snug">${b.subtitle}</p>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /**
+         * Products & Categories
+         */
+        function renderCategories(categories) {
+            const container = document.getElementById('product-category-filters');
+            container.innerHTML = '';
+
+            categories.forEach((cat, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `category-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm ${idx === 0 ? 'bg-elcardo-blue text-white' : 'bg-white text-slate-700 hover:bg-slate-200'}`;
+                btn.setAttribute('data-category', cat.id);
+                btn.textContent = cat.name;
+
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-filter-btn').forEach(b => {
+                        b.classList.remove('bg-elcardo-blue', 'text-white');
+                        b.classList.add('bg-white', 'text-slate-700');
+                    });
+                    btn.classList.add('bg-elcardo-blue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-slate-700');
+
+                    const siteData = getSiteData();
+                    renderProducts(siteData.products || [], cat.id, siteData.branding ? siteData.branding.hotlineRaw : "94774402271");
+                });
+
+                container.appendChild(btn);
+            });
+        }
+
+        function renderProducts(products, activeCatId, rawWa) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '';
+
+            const filtered = activeCatId === 'all' ? products : products.filter(p => p.category === activeCatId);
+
+            filtered.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-slate-200 card-shadow flex flex-col justify-between";
+
+                const featuresHtml = (prod.features || []).slice(0, 3).map(f => `<li class="flex items-center gap-1.5 text-[11px] text-slate-600"><i class="fa-solid fa-check text-elcardo-red text-[10px]"></i> ${f}</li>`).join('');
+
+                const waMessage = `Hello Shutter 2000, I am interested in ${prod.name} (${prod.code}). Please send me quotation details.`;
+                const waUrl = getWhatsAppUrl(rawWa, waMessage);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 bg-slate-900 overflow-hidden group">
+                            <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=800&q=80'">
+                            <div class="absolute top-3 left-3 bg-elcardo-darkblue/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+                                ${prod.categoryName || 'Solution'}
+                            </div>
+                            <div class="absolute top-3 right-3 bg-elcardo-red text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">
+                                ${prod.badge || 'Standard'}
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2.5">
+                            <div class="flex justify-between items-center text-[10px] text-slate-400 font-bold uppercase">
+                                <span>${prod.code || ''}</span>
+                                <span class="text-emerald-600">${prod.warranty || ''}</span>
+                            </div>
+                            <h3 class="font-heading text-base font-extrabold text-slate-900 leading-snug line-clamp-2">${prod.name}</h3>
+                            <p class="text-xs text-slate-500 line-clamp-2">${prod.description}</p>
+                            
+                            <ul class="space-y-1 pt-2 border-t border-slate-100">
+                                ${featuresHtml}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 pt-0 grid grid-cols-2 gap-2">
+                        <button class="btn-view-product bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2.5 rounded-xl transition" data-id="${prod.id}">
+                            View Specs
+                        </button>
+                        <a href="${waUrl}" target="_blank" class="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Quote</span>
+                        </a>
+                    </div>
+                `;
+
+                card.querySelector('.btn-view-product').addEventListener('click', () => {
+                    openProductModal(prod, rawWa);
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        function openProductModal(prod, rawWa) {
+            document.getElementById('modal-prod-img').src = prod.image;
+            document.getElementById('modal-prod-badge').textContent = prod.badge || "Specification";
+            document.getElementById('modal-prod-category').textContent = prod.categoryName || "Total Solutions";
+            document.getElementById('modal-prod-title').textContent = prod.name;
+            document.getElementById('modal-prod-code').textContent = prod.code || "";
+            document.getElementById('modal-prod-warranty').textContent = prod.warranty || "Standard Factory Warranty";
+            document.getElementById('modal-prod-desc').textContent = prod.description;
+            document.getElementById('modal-prod-motorspecs').textContent = prod.motorSpecs || "Heavy-Duty high torque motor with manual override.";
+
+            const featContainer = document.getElementById('modal-prod-features');
+            featContainer.innerHTML = '';
+            (prod.features || []).forEach(f => {
+                const item = document.createElement('div');
+                item.className = "flex items-center gap-2 text-xs text-slate-700 bg-slate-100 p-2 rounded-lg";
+                item.innerHTML = `<i class="fa-solid fa-check text-emerald-600"></i> <span>${f}</span>`;
+                featContainer.appendChild(item);
+            });
+
+            const waMessage = `Hello Shutter 2000, I am inquiring about product "${prod.name}" (${prod.code}). Please contact me with pricing and delivery timeline.`;
+            document.getElementById('modal-prod-wa-btn').href = getWhatsAppUrl(rawWa, waMessage);
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        /**
+         * Color Selector Logic
+         */
+        function initColorSelector() {
+            const siteData = getSiteData();
+            const cs = siteData.colorSelector || {};
+            const rawWa = siteData.branding ? siteData.branding.hotlineRaw : "94774402271";
+
+            if (cs.title) document.getElementById('color-title').textContent = cs.title;
+            if (cs.subtitle) document.getElementById('color-subtitle').textContent = cs.subtitle;
+
+            const container = document.getElementById('color-swatches-container');
+            container.innerHTML = '';
+
+            const colors = cs.colors || [];
+            colors.forEach((c, idx) => {
+                const swatch = document.createElement('button');
+                swatch.className = `p-2 rounded-xl border-2 transition flex items-center gap-2 text-left ${idx === 0 ? 'border-amber-400 bg-slate-800' : 'border-slate-700 bg-slate-900 hover:border-slate-500'}`;
+                
+                const swatchVisual = c.swatchImg ? 
+                    `<img src="${c.swatchImg}" alt="${c.name}" class="w-8 h-8 rounded-lg object-cover border border-white/30 flex-shrink-0">` : 
+                    `<span class="w-7 h-7 rounded-lg shadow-inner border border-white/20 flex-shrink-0" style="background-color: ${c.hex}"></span>`;
+
+                swatch.innerHTML = `
+                    ${swatchVisual}
+                    <div class="overflow-hidden">
+                        <span class="block text-[11px] font-bold text-white truncate">${c.name}</span>
+                        <span class="block text-[9px] text-slate-400">${c.code}</span>
+                    </div>
+                `;
+
+                swatch.addEventListener('click', () => {
+                    document.getElementById('door-preview-box').style.backgroundColor = c.hex;
+                    document.getElementById('preview-color-code').textContent = c.code;
+                    document.getElementById('preview-color-name').textContent = c.name;
+                    document.getElementById('active-color-name').textContent = `${c.name} (${c.code})`;
+
+                    const waMsg = `Hello Shutter 2000, I would like to inquire about roller doors in Colorbond finish: ${c.name} (${c.code}).`;
+                    document.getElementById('btn-inquire-color-wa').href = getWhatsAppUrl(rawWa, waMsg);
+
+                    container.querySelectorAll('button').forEach(b => {
+                        b.className = 'p-2 rounded-xl border-2 border-slate-700 bg-slate-900 hover:border-slate-500 transition flex items-center gap-2 text-left';
+                    });
+                    swatch.className = 'p-2 rounded-xl border-2 border-amber-400 bg-slate-800 transition flex items-center gap-2 text-left';
+                });
+
+                container.appendChild(swatch);
+            });
+        }
+
+        /**
+         * Factory Standards
+         */
+        function renderFactoryFeatures(features) {
+            const container = document.getElementById('factory-features-grid');
+            container.innerHTML = '';
+
+            features.forEach(f => {
+                const div = document.createElement('div');
+                div.className = "bg-elcardo-lightbg p-6 rounded-2xl border border-slate-200 card-shadow space-y-3";
+                div.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-elcardo-blue text-amber-400 flex items-center justify-center text-2xl shadow">
+                        <i class="${f.icon}"></i>
+                    </div>
+                    <h4 class="font-heading font-extrabold text-base text-elcardo-darkblue">${f.title}</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">${f.desc}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /**
+         * Branches Network
+         */
+        function renderBranches(branches) {
+            const container = document.getElementById('branches-grid');
+            container.innerHTML = '';
+
+            branches.forEach(b => {
+                const div = document.createElement('div');
+                div.className = "bg-white p-6 rounded-2xl border border-slate-200 card-shadow space-y-3";
+                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-elcardo-blue flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </div>
+                        ${b.isHeadOffice ? '<span class="bg-elcardo-red text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase">Main Plant</span>' : ''}
+                    </div>
+                    <h4 class="font-heading font-extrabold text-sm text-slate-900 leading-snug">${b.name}</h4>
+                    <p class="text-xs text-slate-500">${b.address}</p>
+                    <div class="pt-2 border-t border-slate-100 space-y-1 text-xs font-semibold text-slate-700">
+                        <div class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-elcardo-red text-[11px]"></i> ${b.phone}</div>
+                        <div class="flex items-center gap-1.5 text-slate-500 text-[11px]"><i class="fa-solid fa-clock text-blue-500 text-[11px]"></i> ${b.hours}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /**
+         * Gallery Rendering
+         */
+        function renderGallery(gallery, rawWa) {
+            const container = document.getElementById('gallery-grid');
+            container.innerHTML = '';
+
+            gallery.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "relative group rounded-2xl overflow-hidden shadow-md cursor-pointer h-72 bg-slate-900 border border-slate-200";
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=900&q=80'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition"></div>
+                    <div class="absolute top-4 right-4 bg-elcardo-red text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">
+                        ${item.category}
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white space-y-1">
+                        <h4 class="font-heading font-bold text-sm sm:text-base leading-snug">${item.title}</h4>
+                        <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold pt-1">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>${item.location || 'Sri Lanka'}</span>
+                        </div>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => {
+                    openGalleryLightbox(item, rawWa);
+                });
+
+                container.appendChild(div);
+            });
+        }
+
+        function openGalleryLightbox(item, rawWa) {
+            document.getElementById('lightbox-img').src = item.image;
+            document.getElementById('lightbox-title').textContent = item.title;
+            document.getElementById('lightbox-location').textContent = item.location || item.category;
+
+            const waMsg = `Hello Shutter 2000, I saw your installed project "${item.title}" on your website and would like to get a quote.`;
+            document.getElementById('lightbox-wa-btn').href = getWhatsAppUrl(rawWa, waMsg);
+
+            document.getElementById('gallery-lightbox-modal').classList.remove('hidden');
+        }
+
+        /**
+         * Testimonials
+         */
+        function renderTestimonials(testimonials) {
+            const container = document.getElementById('testimonials-grid');
+            container.innerHTML = '';
+
+            testimonials.forEach(t => {
+                const div = document.createElement('div');
+                div.className = "bg-slate-900/90 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col justify-between";
+                const stars = Array(t.rating || 5).fill('<i class="fa-solid fa-star text-amber-400 text-xs"></i>').join('');
+
+                div.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex gap-1">${stars}</div>
+                        <p class="text-slate-300 text-xs leading-relaxed italic">"${t.comment}"</p>
+                    </div>
+                    <div class="pt-5 border-t border-slate-800 mt-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-elcardo-blue text-amber-400 flex items-center justify-center font-black">
+                            ${t.name.charAt(0)}
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-white text-sm">${t.name}</h5>
+                            <span class="text-xs text-slate-400">${t.role}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /**
+         * Estimator Calculation Engine
+         */
+        function initEstimator() {
+            const wInput = document.getElementById('calc-width');
+            const hInput = document.getElementById('calc-height');
+            const areaDisplay = document.getElementById('calc-area-val');
+            const motorDisplay = document.getElementById('calc-motor-val');
+            const submitBtn = document.getElementById('btn-estimator-wa');
+
+            function update() {
+                const w = parseFloat(wInput.value) || 0;
+                const h = parseFloat(hInput.value) || 0;
+                const area = (w * h).toFixed(1);
+                areaDisplay.textContent = `${area} Sq.Ft (${w}' × ${h}')`;
+
+                if (area < 80) {
+                    motorDisplay.textContent = "200kg - 300kg Compact Silent Motor (Residential)";
+                } else if (area < 200) {
+                    motorDisplay.textContent = "600kg Heavy Duty Direct-Drive Industrial Motor";
+                } else {
+                    motorDisplay.textContent = "1000kg - 1500kg Ultra Heavy-Duty 3-Phase Industrial Motor";
+                }
+            }
+
+            wInput.addEventListener('input', update);
+            hInput.addEventListener('input', update);
+            update();
+
+            submitBtn.addEventListener('click', () => {
+                const siteData = getSiteData();
+                const rawWa = siteData.branding ? siteData.branding.hotlineRaw : "94774402271";
+
+                const type = document.getElementById('calc-door-type').value;
+                const w = wInput.value;
+                const h = hInput.value;
+                const area = (parseFloat(w) * parseFloat(h)).toFixed(1);
+                const motor = document.getElementById('calc-motor-mode').value;
+                const province = document.getElementById('calc-province').value;
+
+                const msg = `*SHUTTER 2000 - ESTIMATE SPECIFICATION INQUIRY*
+----------------------------------------
+🔹 *Door Type:* ${type}
+🔹 *Opening Dimensions:* ${w} ft (W) × ${h} ft (H) [Total: ${area} Sq.Ft]
+🔹 *Operation Mode:* ${motor}
+🔹 *Province / Location:* ${province}
+
+Please prepare a formal estimate including fabrication and installation.`;
+
+                window.open(getWhatsAppUrl(rawWa, msg), '_blank');
+            });
+        }
+
+        /**
+         * Global Event Handlers
+         */
+        function initEvents() {
+            // Mobile Nav Toggle
+            const navToggle = document.getElementById('mobile-nav-toggle');
+            const navDrawer = document.getElementById('mobile-nav-drawer');
+            navToggle.addEventListener('click', () => {
+                navDrawer.classList.toggle('hidden');
+            });
+
+            // Product Modal Close
+            document.getElementById('modal-prod-close').addEventListener('click', () => {
+                document.getElementById('product-modal').classList.add('hidden');
+            });
+            document.getElementById('product-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'product-modal') {
+                    document.getElementById('product-modal').classList.add('hidden');
+                }
+            });
+
+            // Lightbox Modal Close
+            document.getElementById('lightbox-close-btn').addEventListener('click', () => {
+                document.getElementById('gallery-lightbox-modal').classList.add('hidden');
+            });
+            document.getElementById('gallery-lightbox-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'gallery-lightbox-modal') {
+                    document.getElementById('gallery-lightbox-modal').classList.add('hidden');
+                }
+            });
+
+            // Contact Form Submit -> WhatsApp
+            document.getElementById('contact-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const siteData = getSiteData();
+                const rawWa = siteData.branding ? siteData.branding.hotlineRaw : "94774402271";
+
+                const name = document.getElementById('cust-name').value.trim();
+                const phone = document.getElementById('cust-phone').value.trim();
+                const city = document.getElementById('cust-city').value.trim();
+                const product = document.getElementById('cust-product').value;
+                const dims = document.getElementById('cust-dims').value.trim();
+                const notes = document.getElementById('cust-notes').value.trim();
+
+                const formatted = `*NEW WEBSITE INQUIRY - SHUTTER 2000 INTL*
+----------------------------------------
+👤 *Customer Name:* ${name}
+📞 *Contact Number:* ${phone}
+📍 *Project Location:* ${city}
+🛠️ *Product:* ${product}
+📐 *Dimensions:* ${dims || 'Not specified (Requires site measurement)'}
+📝 *Notes:* ${notes || 'Standard inquiry'}
+
+Please contact me with quotation and site visit schedule.`;
+
+                window.open(getWhatsAppUrl(rawWa, formatted), '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
