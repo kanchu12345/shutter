@@ -593,6 +593,14 @@
                     </p>
                 </div>
 
+                <!-- Gallery Category Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10" id="gallery-filters">
+                    <button class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-elcardo-darkblue text-white shadow transition" data-filter="all">All Projects</button>
+                    <button class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-filter="Commercial">Commercial & Showrooms</button>
+                    <button class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-filter="Industrial">Industrial & Logistics</button>
+                    <button class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition" data-filter="Residential">Residential Villas</button>
+                </div>
+
                 <!-- Gallery Grid -->
                 <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Injected dynamically via JS -->
@@ -834,6 +842,12 @@
                 <button id="lightbox-close-btn" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-800 text-white hover:bg-elcardo-red flex items-center justify-center transition">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
+                <button id="lightbox-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-slate-800/80 hover:bg-slate-700 text-white flex items-center justify-center transition" aria-label="Previous image">
+                    <i class="fa-solid fa-chevron-left text-base"></i>
+                </button>
+                <button id="lightbox-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-slate-800/80 hover:bg-slate-700 text-white flex items-center justify-center transition" aria-label="Next image">
+                    <i class="fa-solid fa-chevron-right text-base"></i>
+                </button>
                 <img id="lightbox-img" src="" alt="Project Photo" class="w-full max-h-[70vh] object-contain bg-black">
             </div>
             <div class="p-5 text-white bg-slate-900 border-t border-slate-800 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
@@ -841,9 +855,9 @@
                     <h4 id="lightbox-title" class="font-bold text-lg">Project Title</h4>
                     <span id="lightbox-location" class="text-xs text-amber-400 font-semibold uppercase">Location</span>
                 </div>
-                <a id="lightbox-wa-btn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition self-start sm:self-auto">
+                <a id="lightbox-wa-btn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition self-start sm:self-auto shadow">
                     <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Inquire Design Quote</span>
+                    <span>Inquire Quote For This Design</span>
                 </a>
             </div>
         </div>
@@ -1650,40 +1664,85 @@
             });
         }
 
-        /**
-         * Gallery Rendering
-         */
-        function renderGallery(gallery, rawWa) {
+        let currentGalleryItems = [];
+        let currentGalleryIndex = 0;
+        let currentGalleryRawWa = "94774402271";
+
+        function renderGallery(gallery, rawWa, activeCategory = 'all') {
             const container = document.getElementById('gallery-grid');
+            const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+            if (!container) return;
+
+            currentGalleryRawWa = rawWa;
+            const filtered = activeCategory === 'all' 
+                ? gallery 
+                : gallery.filter(g => g.category && g.category.toLowerCase() === activeCategory.toLowerCase());
+
+            currentGalleryItems = filtered;
             container.innerHTML = '';
 
-            gallery.forEach(item => {
+            // Update Filter Tab Styles
+            filterBtns.forEach(btn => {
+                const f = btn.getAttribute('data-filter');
+                if (f.toLowerCase() === activeCategory.toLowerCase()) {
+                    btn.className = 'gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-elcardo-darkblue text-white shadow transition';
+                } else {
+                    btn.className = 'gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition';
+                }
+                btn.onclick = () => renderGallery(gallery, rawWa, f);
+            });
+
+            filtered.forEach((item, idx) => {
                 const div = document.createElement('div');
                 div.className = "relative group rounded-2xl overflow-hidden shadow-md cursor-pointer h-72 bg-slate-900 border border-slate-200";
                 div.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=900&q=80'">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition"></div>
-                    <div class="absolute top-4 right-4 bg-elcardo-red text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">
+                    <div class="absolute top-4 right-4 bg-elcardo-red text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase shadow">
                         ${item.category}
                     </div>
                     <div class="absolute bottom-4 left-4 right-4 text-white space-y-1">
                         <h4 class="font-heading font-bold text-sm sm:text-base leading-snug">${item.title}</h4>
-                        <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold pt-1">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>${item.location || 'Sri Lanka'}</span>
+                        <div class="flex items-center justify-between text-xs text-amber-400 font-semibold pt-1">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot"></i> ${item.location || 'Sri Lanka'}</span>
+                            <span class="text-[11px] bg-white/20 hover:bg-white/30 text-white px-2 py-0.5 rounded-full"><i class="fa-solid fa-expand mr-1"></i> Preview</span>
                         </div>
                     </div>
                 `;
 
                 div.addEventListener('click', () => {
+                    currentGalleryIndex = idx;
                     openGalleryLightbox(item, rawWa);
                 });
 
                 container.appendChild(div);
             });
+
+            // Bind Prev / Next in Lightbox
+            const prevBtn = document.getElementById('lightbox-prev-btn');
+            const nextBtn = document.getElementById('lightbox-next-btn');
+
+            if (prevBtn) {
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (!currentGalleryItems.length) return;
+                    currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryItems.length) % currentGalleryItems.length;
+                    openGalleryLightbox(currentGalleryItems[currentGalleryIndex], currentGalleryRawWa);
+                };
+            }
+
+            if (nextBtn) {
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (!currentGalleryItems.length) return;
+                    currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryItems.length;
+                    openGalleryLightbox(currentGalleryItems[currentGalleryIndex], currentGalleryRawWa);
+                };
+            }
         }
 
         function openGalleryLightbox(item, rawWa) {
+            if (!item) return;
             document.getElementById('lightbox-img').src = item.image;
             document.getElementById('lightbox-title').textContent = item.title;
             document.getElementById('lightbox-location').textContent = item.location || item.category;

@@ -444,6 +444,27 @@ const DEFAULT_DATA = {
             category: "Industrial",
             location: "Ratmalana Engineering Workshop",
             image: "images/factory_plant.jpg"
+        },
+        {
+            id: "gal-7",
+            title: "Crystal Polycarbonate Transparent Mall Shutter",
+            category: "Commercial",
+            location: "Kandy City Centre Storefront",
+            image: "images/polycarbonate_door.jpg"
+        },
+        {
+            id: "gal-8",
+            title: "Heavy-Duty Zinc-Alum Motorized Industrial Bay Shutter",
+            category: "Industrial",
+            location: "Katunayake Free Trade Zone",
+            image: "images/industrial_shutter.jpg"
+        },
+        {
+            id: "gal-9",
+            title: "Perforated Airflow Security Shutter for Auto Showroom",
+            category: "Commercial",
+            location: "Galle Road Automotive Dealership",
+            image: "images/perforated_shutter.jpg"
         }
     ],
     testimonials: [
