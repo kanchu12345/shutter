@@ -133,12 +133,12 @@
                 </a>
 
                 <!-- Desktop Navigation Tabs (Exact Elcardo Style: Home, About, Subsidiaries, Products ⌵, Projects, Branches, Support, Careers, Contact, Search) -->
-                <nav class="hidden xl:flex items-center gap-7 text-[#204382] font-semibold text-[14.5px]" id="desktop-nav-menu">
+                <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-[#204382] font-semibold text-[13.5px] xl:text-[14.5px]" id="desktop-nav-menu">
                     <!-- Populated dynamically via JS with exact Elcardo styling and dropdowns -->
                 </nav>
 
                 <!-- Header Actions (Search Icon + Hotline/Quote Button + Mobile Hamburger) -->
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 sm:gap-3">
                     
                     <!-- Search Button Icon (Elcardo Style) -->
                     <button id="header-search-btn" class="w-10 h-10 rounded-full hover:bg-slate-100 text-[#204382] hover:text-elcardo-red flex items-center justify-center text-base transition" aria-label="Search Website">
@@ -152,7 +152,7 @@
                     </a>
 
                     <!-- Mobile Hamburger Button -->
-                    <button id="mobile-nav-toggle" class="xl:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                    <button id="mobile-nav-toggle" class="lg:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
                         <i class="fa-solid fa-bars text-2xl text-[#204382]"></i>
                     </button>
                 </div>
@@ -161,7 +161,7 @@
         </div>
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobile-nav-drawer" class="hidden xl:hidden bg-white border-t border-slate-200 px-5 py-4 shadow-xl space-y-3">
+        <div id="mobile-nav-drawer" class="hidden lg:hidden bg-white border-t border-slate-200 px-5 py-4 shadow-xl space-y-3">
             <div id="mobile-nav-links" class="space-y-1 divide-y divide-slate-100">
                 <!-- Populated dynamically -->
             </div>
@@ -963,10 +963,26 @@
             }
         });
 
+        function safeText(id, text) {
+            const el = document.getElementById(id);
+            if (el && text !== undefined && text !== null) el.textContent = text;
+        }
+
+        function safeHref(id, url) {
+            const el = document.getElementById(id);
+            if (el && url) el.href = url;
+        }
+
+        function safeSrc(id, src) {
+            const el = document.getElementById(id);
+            if (el && src) el.src = src;
+        }
+
         /**
          * Master rendering function
          */
         function renderAllSections(data) {
+            if (!data) return;
             const tb = data.topBar || {};
             const br = data.branding || {};
             const abt = data.about || {};
@@ -975,25 +991,26 @@
             const rawWa = br.hotlineRaw || "94774402271";
 
             // Top Bar
-            document.getElementById('top-address').textContent = tb.address || "61/24 Sri Sumangala Road, Ratmalana, Sri Lanka";
-            document.getElementById('top-hours').textContent = tb.workingHours || "Mon - Sat: 8.00 AM - 6.00 PM | 24/7 Breakdown Dispatch";
-            document.getElementById('top-notice').textContent = tb.notice || "🔥 Islandwide Delivery & Free On-Site Measurement!";
+            safeText('top-address', tb.address || "61/24 Sri Sumangala Road, Ratmalana, Sri Lanka");
+            safeText('top-hours', tb.workingHours || "Mon - Sat: 8.00 AM - 6.00 PM | 24/7 Breakdown Dispatch");
+            safeText('top-notice', tb.notice || "🔥 Islandwide Delivery & Free On-Site Measurement!");
             
             if (tb.socialLinks) {
-                document.getElementById('top-social-fb').href = tb.socialLinks.facebook || "#";
-                document.getElementById('top-social-insta').href = tb.socialLinks.instagram || "#";
-                document.getElementById('top-social-yt').href = tb.socialLinks.youtube || "#";
-                document.getElementById('top-social-li').href = tb.socialLinks.linkedin || "#";
-                document.getElementById('top-social-wa').href = tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`;
+                safeHref('top-social-fb', tb.socialLinks.facebook || "#");
+                safeHref('top-social-insta', tb.socialLinks.instagram || "#");
+                safeHref('top-social-yt', tb.socialLinks.youtube || "#");
+                safeHref('top-social-li', tb.socialLinks.linkedin || "#");
+                safeHref('top-social-wa', tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`);
             }
 
             // Header
-            document.getElementById('header-brand-name').textContent = br.shortName || "SHUTTER 2000";
-            document.getElementById('header-tagline').textContent = br.tagline || "Total Door Solutions & Industrial Fabrication";
-            document.getElementById('header-headoffice').textContent = br.headOffice || "Ratmalana Main Engineering Complex";
-            document.getElementById('header-hotline-phone').textContent = br.hotlinePhone || "+94 77 440 2271";
-            document.getElementById('header-hotline-link').href = `tel:${br.hotlineRaw || "+94774402271"}`;
-            document.getElementById('header-wa-quote-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I would like to request a quotation.");
+            safeText('header-brand-name', br.shortName || "SHUTTER 2000");
+            safeText('header-tagline', br.tagline || "Total Door Solutions & Industrial Fabrication");
+            safeText('header-headoffice', br.headOffice || "Ratmalana Main Engineering Complex");
+            safeText('header-hotline-phone', br.hotlinePhone || "+94 77 440 2271");
+            safeHref('header-hotline-link', `tel:${br.hotlineRaw || "+94774402271"}`);
+            safeHref('header-wa-quote-btn', getWhatsAppUrl(rawWa, "Hello Shutter 2000, I would like to request a quotation."));
+            safeHref('mobile-wa-btn', getWhatsAppUrl(rawWa, "Hello Shutter 2000, I need assistance with door automation."));
 
             // Navigation
             renderNavMenu(data.navMenu || []);
@@ -1005,28 +1022,30 @@
             renderTrustBadges(data.trustBadges || []);
 
             // About Us Section
-            if (abt.badge) document.getElementById('about-badge').textContent = abt.badge;
-            if (abt.title) document.getElementById('about-title').textContent = abt.title;
-            if (abt.subtitle) document.getElementById('about-subtitle').textContent = abt.subtitle;
-            if (abt.desc1) document.getElementById('about-desc1').textContent = abt.desc1;
-            if (abt.desc2) document.getElementById('about-desc2').textContent = abt.desc2;
-            if (abt.experienceYears) document.getElementById('about-exp-years').textContent = abt.experienceYears;
-            if (abt.experienceText) document.getElementById('about-exp-text').textContent = abt.experienceText;
-            if (abt.certBadge) document.getElementById('about-cert-badge').textContent = abt.certBadge;
-            if (abt.image1) document.getElementById('about-img-1').src = abt.image1;
-            if (abt.image2) document.getElementById('about-img-2').src = abt.image2;
-            document.getElementById('about-hotline-btn').href = `tel:${br.hotlineRaw || "+94774402271"}`;
-            document.getElementById('about-hotline-text').textContent = br.hotlinePhone || "+94 77 440 2271";
+            safeText('about-badge', abt.badge);
+            safeText('about-title', abt.title);
+            safeText('about-subtitle', abt.subtitle);
+            safeText('about-desc1', abt.desc1);
+            safeText('about-desc2', abt.desc2);
+            safeText('about-exp-years', abt.experienceYears);
+            safeText('about-exp-text', abt.experienceText);
+            safeText('about-cert-badge', abt.certBadge);
+            safeSrc('about-img-1', abt.image1);
+            safeSrc('about-img-2', abt.image2);
+            safeHref('about-hotline-btn', `tel:${br.hotlineRaw || "+94774402271"}`);
+            safeText('about-hotline-text', br.hotlinePhone || "+94 77 440 2271");
 
             // About Checklist
             const chkContainer = document.getElementById('about-checklist-container');
-            chkContainer.innerHTML = '';
-            (abt.checklist || []).forEach(item => {
-                const d = document.createElement('div');
-                d.className = "flex items-center gap-2 text-xs text-slate-700 font-semibold";
-                d.innerHTML = `<i class="fa-solid fa-circle-check text-elcardo-blue text-sm"></i> <span>${item}</span>`;
-                chkContainer.appendChild(d);
-            });
+            if (chkContainer) {
+                chkContainer.innerHTML = '';
+                (abt.checklist || []).forEach(item => {
+                    const d = document.createElement('div');
+                    d.className = "flex items-center gap-2 text-xs text-slate-700 font-semibold";
+                    d.innerHTML = `<i class="fa-solid fa-circle-check text-elcardo-blue text-sm"></i> <span>${item}</span>`;
+                    chkContainer.appendChild(d);
+                });
+            }
 
             // Product Categories & Products
             renderCategories(data.categories || []);
@@ -1034,9 +1053,9 @@
 
             // Factory Standards
             const fs = data.factoryStandards || {};
-            if (fs.badge) document.getElementById('factory-badge').textContent = fs.badge;
-            if (fs.title) document.getElementById('factory-title').textContent = fs.title;
-            if (fs.description) document.getElementById('factory-desc').textContent = fs.description;
+            safeText('factory-badge', fs.badge);
+            safeText('factory-title', fs.title);
+            safeText('factory-desc', fs.description);
             renderFactoryFeatures(fs.features || []);
 
             // Branch Network
@@ -1049,37 +1068,37 @@
             renderTestimonials(data.testimonials || []);
 
             // CTA Banner
-            if (cta.title) document.getElementById('cta-title').textContent = cta.title;
-            if (cta.subtitle) document.getElementById('cta-subtitle').textContent = cta.subtitle;
-            if (cta.buttonText) document.getElementById('cta-btn-text').textContent = cta.buttonText;
-            if (cta.buttonLink) document.getElementById('cta-btn-link').href = cta.buttonLink;
+            safeText('cta-title', cta.title);
+            safeText('cta-subtitle', cta.subtitle);
+            safeText('cta-btn-text', cta.buttonText);
+            safeHref('cta-btn-link', cta.buttonLink);
             if (cta.phone) {
-                document.getElementById('cta-phone-text').textContent = cta.phone;
-                document.getElementById('cta-phone-link').href = `tel:${rawWa}`;
+                safeText('cta-phone-text', cta.phone);
+                safeHref('cta-phone-link', `tel:${rawWa}`);
             }
 
             // Contact Section
-            document.getElementById('contact-address').textContent = cont.address || tb.address;
-            document.getElementById('contact-phone').textContent = cont.phone || br.hotlinePhone;
-            document.getElementById('contact-phone-link').href = `tel:${cont.phoneRaw || rawWa}`;
-            document.getElementById('contact-email').textContent = cont.email || tb.email;
-            document.getElementById('contact-email-link').href = `mailto:${cont.email || tb.email}`;
-            document.getElementById('contact-direct-wa-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I am inquiring from your website.");
-            document.getElementById('floating-whatsapp-btn').href = getWhatsAppUrl(rawWa, "Hello Shutter 2000, I need assistance with door automation.");
+            safeText('contact-address', cont.address || tb.address);
+            safeText('contact-phone', cont.phone || br.hotlinePhone);
+            safeHref('contact-phone-link', `tel:${cont.phoneRaw || rawWa}`);
+            safeText('contact-email', cont.email || tb.email);
+            safeHref('contact-email-link', `mailto:${cont.email || tb.email}`);
+            safeHref('contact-direct-wa-btn', getWhatsAppUrl(rawWa, "Hello Shutter 2000, I am inquiring from your website."));
+            safeHref('floating-whatsapp-btn', getWhatsAppUrl(rawWa, "Hello Shutter 2000, I need assistance with door automation."));
 
             // Footer
-            document.getElementById('footer-brand-name').textContent = br.shortName || "SHUTTER 2000";
-            document.getElementById('footer-tagline').textContent = br.subtagline || br.tagline || "";
-            document.getElementById('footer-address').textContent = cont.address || tb.address;
-            document.getElementById('footer-phone').textContent = cont.phone || br.hotlinePhone;
-            document.getElementById('footer-email').textContent = cont.email || tb.email;
+            safeText('footer-brand-name', br.shortName || "SHUTTER 2000");
+            safeText('footer-tagline', br.subtagline || br.tagline || "");
+            safeText('footer-address', cont.address || tb.address);
+            safeText('footer-phone', cont.phone || br.hotlinePhone);
+            safeText('footer-email', cont.email || tb.email);
 
             if (tb.socialLinks) {
-                document.getElementById('footer-social-fb').href = tb.socialLinks.facebook || "#";
-                document.getElementById('footer-social-insta').href = tb.socialLinks.instagram || "#";
-                document.getElementById('footer-social-yt').href = tb.socialLinks.youtube || "#";
-                document.getElementById('footer-social-li').href = tb.socialLinks.linkedin || "#";
-                document.getElementById('footer-social-wa').href = tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`;
+                safeHref('footer-social-fb', tb.socialLinks.facebook || "#");
+                safeHref('footer-social-insta', tb.socialLinks.instagram || "#");
+                safeHref('footer-social-yt', tb.socialLinks.youtube || "#");
+                safeHref('footer-social-li', tb.socialLinks.linkedin || "#");
+                safeHref('footer-social-wa', tb.socialLinks.whatsapp || `https://wa.me/${rawWa}`);
             }
         }
 
