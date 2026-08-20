@@ -4,7 +4,7 @@
  * 100% Client-Side Editable via LocalStorage
  */
 
-const STORAGE_KEY = 'shutter2000_v7_infinite_design_contact';
+const STORAGE_KEY = 'shutter2000_v9_clean_load';
 const PIN_STORAGE_KEY = 'shutter2000_admin_pin';
 const DEFAULT_PIN = '2000';
 
@@ -134,10 +134,6 @@ const DEFAULT_DATA = {
             title: "Islandwide Service Fleet",
             subtitle: "24/7 Mobile technicians across all 9 provinces"
         }
-        { icon: "fa-solid fa-shield-halved", title: "10-Year Warranty", desc: "Factory-backed structural and finish warranty" },
-        { icon: "fa-solid fa-industry", title: "Ratmalana Complex", desc: "15,000 sq.ft state-of-the-art manufacturing plant" },
-        { icon: "fa-solid fa-clock", title: "24/7 Breakdown Dispatch", desc: "Mobile rapid emergency technical support fleet" },
-        { icon: "fa-solid fa-award", title: "Certified Steel", desc: "Premium Australian AZ150 corrosion-resistant steel" }
     ],
     about: {
         badge: "About Shutter 2000 International",
