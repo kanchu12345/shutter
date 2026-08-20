@@ -946,16 +946,20 @@
             <!-- Bottom Legal, Design Credit & Admin Link -->
             <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
                 <p>&copy; <span id="current-year">2026</span> Shutter 2000 International (Pvt) Ltd. All Rights Reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-                    <a id="dev-credit-link" href="https://wa.me/94774402271?text=Hello%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20web%20development." target="_blank" class="text-slate-300 hover:text-amber-300 font-medium inline-flex items-center gap-2 transition group bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800 hover:border-amber-500/50">
-                        <i class="fa-solid fa-code text-xs text-elcardo-red group-hover:scale-110 transition"></i>
-                        <span id="dev-credit-text">Designed & Developed by Kanchana</span>
-                        <span class="inline-flex items-center gap-1 text-[11px] bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-700/60 group-hover:bg-emerald-900 transition">
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                    <div class="inline-flex items-center gap-2 bg-slate-900/90 px-3.5 py-1.5 rounded-full border border-slate-800 shadow-sm">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xs text-amber-400"></i>
+                        <span class="text-slate-300 font-medium">Designed & Developed by</span>
+                        <a id="dev-fb-link" href="https://www.facebook.com/profile.php?id=100082101311247" target="_blank" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 hover:underline transition">
+                            <i class="fa-brands fa-facebook text-blue-400"></i>
+                            <span id="dev-credit-name">Infinite Design</span>
+                        </a>
+                        <a id="dev-credit-link" href="https://wa.me/94774402271?text=Hello%20Infinite%20Design%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" class="inline-flex items-center gap-1 text-[11px] bg-emerald-950 hover:bg-emerald-900 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-700/60 transition ml-1">
                             <i class="fa-brands fa-whatsapp text-xs"></i>
                             <span id="dev-credit-phone">+94 77 440 2271</span>
-                        </span>
-                    </a>
-                    <a href="admin.html" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1 font-semibold">
+                        </a>
+                    </div>
+                    <a href="admin.html" class="text-slate-400 hover:text-amber-400 transition flex items-center gap-1 font-semibold text-xs">
                         <i class="fa-solid fa-gear text-[10px]"></i> Staff CMS
                     </a>
                 </div>
@@ -1125,10 +1129,11 @@
 
             // Developer Credit
             const dev = data.developerCredit || {};
-            if (dev.text) safeText('dev-credit-text', dev.text);
+            if (dev.name) safeText('dev-credit-name', dev.name);
+            if (dev.facebook) safeHref('dev-fb-link', dev.facebook);
             if (dev.whatsapp) safeText('dev-credit-phone', dev.whatsapp);
             if (dev.whatsappRaw) {
-                safeHref('dev-credit-link', `https://wa.me/${dev.whatsappRaw}?text=Hello%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20web%20development.`);
+                safeHref('dev-credit-link', `https://wa.me/${dev.whatsappRaw}?text=Hello%20Infinite%20Design%2C%20I%20saw%20the%20Shutter%202000%20website%20you%20designed%20and%20would%20like%20to%20inquire%20about%20a%20project.`);
             }
         }
 
