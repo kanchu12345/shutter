@@ -4,7 +4,7 @@
  * 100% Client-Side Editable via LocalStorage
  */
 
-const STORAGE_KEY = 'shutter2000_v4_slider_match';
+const STORAGE_KEY = 'shutter2000_v5_elcardo_exact_nav';
 const PIN_STORAGE_KEY = 'shutter2000_admin_pin';
 const DEFAULT_PIN = '2000';
 
@@ -40,14 +40,28 @@ const DEFAULT_DATA = {
     },
     navMenu: [
         { label: "Home", link: "#home" },
-        { label: "About Us", link: "#about" },
-        { label: "Products & Solutions", link: "#products" },
-        { label: "Color Selector", link: "#colors" },
-        { label: "Door Estimator", link: "#estimator" },
-        { label: "Factory & Standards", link: "#factory" },
-        { label: "Branch Network", link: "#branches" },
-        { label: "Gallery", link: "#gallery" },
-        { label: "Contact Us", link: "#contact" }
+        { label: "About", link: "#about" },
+        { label: "Subsidiaries", link: "#factory" },
+        { 
+            label: "Products", 
+            link: "#products",
+            hasDropdown: true,
+            children: [
+                { label: "Zinc-Alum Automated Roller Doors", link: "#products" },
+                { label: "Heavy Industrial Roller Shutters", link: "#products" },
+                { label: "Polycarbonate Transparent Doors", link: "#products" },
+                { label: "Retractable Security Gates (SS 304)", link: "#products" },
+                { label: "High-Speed Rapid PVC Doors", link: "#products" },
+                { label: "Smart Wi-Fi / GSM Mobile App Hubs", link: "#products" },
+                { label: "Colorbond Architectural Palette", link: "#colors" },
+                { label: "Direct-Drive Motors & Spare Parts", link: "#products" }
+            ]
+        },
+        { label: "Projects", link: "#gallery" },
+        { label: "Branches", link: "#branches" },
+        { label: "Support", link: "#estimator" },
+        { label: "Careers", link: "#factory" },
+        { label: "Contact", link: "#contact" }
     ],
     heroSlides: [
         {

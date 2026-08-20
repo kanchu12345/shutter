@@ -114,98 +114,79 @@
         </div>
     </div>
 
-    <!-- Main Branding Header (Clean White with Contact Badges) -->
-    <div class="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
-            
-            <!-- Logo & Brand Name -->
-            <a href="#home" class="flex items-center gap-3.5 group">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-elcardo-blue to-elcardo-darkblue flex items-center justify-center text-white shadow-md shadow-blue-900/20 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-bars-staggered text-2xl rotate-90 text-amber-400"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-heading font-black text-2xl text-elcardo-darkblue tracking-tight" id="header-brand-name">SHUTTER 2000</span>
-                        <span class="bg-elcardo-red text-white text-[10px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase">INTERNATIONAL</span>
-                    </div>
-                    <p class="text-xs text-slate-500 font-semibold tracking-wide" id="header-tagline">Total Door Solutions & Industrial Fabrication</p>
-                </div>
-            </a>
-
-            <!-- Header Contact Badges -->
-            <div class="hidden md:flex items-center gap-6">
-                <!-- Head Office Badge -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-50 text-elcardo-blue flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-building-shield"></i>
-                    </div>
-                    <div>
-                        <span class="block text-[11px] font-bold uppercase text-slate-400">Ratmalana Workshop</span>
-                        <span class="block text-xs font-extrabold text-slate-800" id="header-headoffice">Main Engineering Hub</span>
-                    </div>
-                </div>
-
-                <!-- 24/7 Hotline Badge -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-red-50 text-elcardo-red flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-phone-volume"></i>
-                    </div>
-                    <div>
-                        <span class="block text-[11px] font-bold uppercase text-slate-400">24/7 Hotline / WhatsApp</span>
-                        <a id="header-hotline-link" href="tel:+94774402271" class="block text-sm font-black text-elcardo-darkblue hover:text-elcardo-red transition">
-                            <span id="header-hotline-phone">+94 77 440 2271</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Direct WhatsApp Quote Action Button -->
-                <a id="header-wa-quote-btn" href="https://wa.me/94774402271?text=Hello%20Shutter%202000,%20I%20would%20like%20to%20get%20a%20quotation." target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs shadow-md shadow-emerald-600/20 transition transform hover:-translate-y-0.5">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Quick Quote</span>
-                </a>
-            </div>
-
-            <!-- Mobile Hamburger Button -->
-            <button id="mobile-nav-toggle" class="lg:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Corporate Navigation Bar (Elcardo Dark Navy Blue) -->
-    <nav class="bg-elcardo-darkblue text-white sticky top-8 z-40 shadow-lg transition-all duration-300">
+    <!-- Main Header Bar (Elcardo Style: Crisp White, Logo Left, Tabs Right + Search) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-14">
+            <div class="flex justify-between items-center h-20">
                 
-                <!-- Desktop Nav Links -->
-                <div class="hidden lg:flex items-center gap-1 font-semibold text-xs tracking-wide uppercase" id="desktop-nav-menu">
-                    <!-- Populated dynamically via JS -->
-                </div>
+                <!-- Logo & Brand Identity (Left) -->
+                <a href="#home" class="flex items-center gap-3 group flex-shrink-0">
+                    <div class="w-11 h-11 rounded-full bg-elcardo-red flex items-center justify-center text-white shadow-md shadow-red-600/20 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-bars-staggered text-xl rotate-90 text-amber-300"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-heading font-black text-2xl text-[#1a3b70] tracking-tight" id="header-brand-name">SHUTTER 2000</span>
+                        </div>
+                        <span class="block text-[9.5px] font-extrabold text-elcardo-red tracking-widest uppercase">INTERNATIONAL</span>
+                    </div>
+                </a>
 
-                <!-- Right Nav Action -->
-                <div class="hidden lg:flex items-center gap-3">
-                    <a href="#estimator" class="inline-flex items-center gap-1.5 bg-elcardo-red hover:bg-elcardo-darkred text-white px-3.5 py-1.5 rounded-lg text-xs font-bold shadow transition">
-                        <i class="fa-solid fa-calculator"></i>
-                        <span>Instant Estimator</span>
+                <!-- Desktop Navigation Tabs (Exact Elcardo Style: Home, About, Subsidiaries, Products ⌵, Projects, Branches, Support, Careers, Contact, Search) -->
+                <nav class="hidden xl:flex items-center gap-7 text-[#204382] font-semibold text-[14.5px]" id="desktop-nav-menu">
+                    <!-- Populated dynamically via JS with exact Elcardo styling and dropdowns -->
+                </nav>
+
+                <!-- Header Actions (Search Icon + Hotline/Quote Button + Mobile Hamburger) -->
+                <div class="flex items-center gap-3">
+                    
+                    <!-- Search Button Icon (Elcardo Style) -->
+                    <button id="header-search-btn" class="w-10 h-10 rounded-full hover:bg-slate-100 text-[#204382] hover:text-elcardo-red flex items-center justify-center text-base transition" aria-label="Search Website">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <!-- Quick Quote Action -->
+                    <a id="header-wa-quote-btn" href="https://wa.me/94774402271" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-elcardo-red hover:bg-elcardo-darkred text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Get Quote</span>
                     </a>
+
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobile-nav-toggle" class="xl:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars text-2xl text-[#204382]"></i>
+                    </button>
                 </div>
 
             </div>
         </div>
 
-        <!-- Mobile Dropdown Navigation -->
-        <div id="mobile-nav-drawer" class="hidden lg:hidden bg-slate-900 border-t border-slate-800 px-4 py-4 space-y-2">
-            <div id="mobile-nav-links" class="space-y-1">
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-nav-drawer" class="hidden xl:hidden bg-white border-t border-slate-200 px-5 py-4 shadow-xl space-y-3">
+            <div id="mobile-nav-links" class="space-y-1 divide-y divide-slate-100">
                 <!-- Populated dynamically -->
             </div>
-            <div class="pt-3 border-t border-slate-800 flex flex-col gap-2">
-                <a id="mobile-wa-btn" href="https://wa.me/94774402271" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 text-white py-2.5 rounded-lg text-xs font-bold">
+            <div class="pt-3 border-t border-slate-200 flex flex-col gap-2">
+                <a id="mobile-wa-btn" href="https://wa.me/94774402271" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-lg text-xs font-bold shadow">
                     <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Chat on WhatsApp</span>
+                    <span>WhatsApp Engineer (24/7)</span>
                 </a>
             </div>
         </div>
-    </nav>
+    </header>
+
+    <!-- Search Modal (Clean, Instant Live Search) -->
+    <div id="search-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-start justify-center p-4 pt-20">
+        <div class="max-w-2xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 transform transition-all">
+            <div class="p-4 border-b border-slate-100 flex items-center gap-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg"></i>
+                <input type="text" id="site-search-input" placeholder="Search products, roller doors, gates, colors, specifications..." class="w-full text-sm sm:text-base outline-none text-slate-800 font-medium">
+                <button id="search-modal-close" class="text-slate-400 hover:text-slate-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="search-results-box" class="max-h-96 overflow-y-auto p-4 space-y-2 text-xs">
+                <p class="text-slate-400 text-center py-4">Type to search across all products, gate solutions, color swatches, and factory standards.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Body Container -->
     <main class="flex-grow">
@@ -1103,7 +1084,7 @@
         }
 
         /**
-         * Navigation Rendering
+         * Navigation Rendering (Exact Elcardo Style with Dropdowns)
          */
         function renderNavMenu(menu) {
             const deskContainer = document.getElementById('desktop-nav-menu');
@@ -1111,24 +1092,194 @@
             deskContainer.innerHTML = '';
             mobContainer.innerHTML = '';
 
-            menu.forEach((item, idx) => {
-                // Desktop link
-                const a = document.createElement('a');
-                a.href = item.link;
-                a.className = "px-3.5 py-4 hover:text-amber-400 hover:border-b-2 hover:border-elcardo-red transition flex items-center";
-                a.textContent = item.label;
-                deskContainer.appendChild(a);
+            menu.forEach((item) => {
+                if (item.hasDropdown && item.children) {
+                    // Desktop Dropdown
+                    const dropdownWrapper = document.createElement('div');
+                    dropdownWrapper.className = "relative group py-6";
+                    
+                    const trigger = document.createElement('a');
+                    trigger.href = item.link;
+                    trigger.className = "text-[#204382] group-hover:text-elcardo-red font-semibold text-[14.5px] transition flex items-center gap-1.5 cursor-pointer";
+                    trigger.innerHTML = `<span>${item.label}</span> <i class="fa-solid fa-chevron-down text-[11px] text-[#204382]/60 group-hover:text-elcardo-red group-hover:rotate-180 transition-transform duration-200"></i>`;
 
-                // Mobile link
-                const mobA = document.createElement('a');
-                mobA.href = item.link;
-                mobA.className = "block py-2 text-sm text-slate-200 hover:text-amber-400";
-                mobA.textContent = item.label;
-                mobA.addEventListener('click', () => {
-                    document.getElementById('mobile-nav-drawer').classList.add('hidden');
-                });
-                mobContainer.appendChild(mobA);
+                    const menuBox = document.createElement('div');
+                    menuBox.className = "absolute left-0 top-[90%] pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:top-full transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto";
+                    
+                    let childItemsHtml = '';
+                    item.children.forEach(c => {
+                        childItemsHtml += `
+                            <a href="${c.link}" class="flex items-center justify-between px-4 py-2.5 text-xs font-bold text-[#1a3b70] hover:bg-blue-50 hover:text-elcardo-red transition rounded-lg">
+                                <span>${c.label}</span>
+                                <i class="fa-solid fa-angle-right text-[10px] text-slate-300"></i>
+                            </a>
+                        `;
+                    });
+
+                    menuBox.innerHTML = `
+                        <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 space-y-0.5">
+                            ${childItemsHtml}
+                        </div>
+                    `;
+
+                    dropdownWrapper.appendChild(trigger);
+                    dropdownWrapper.appendChild(menuBox);
+                    deskContainer.appendChild(dropdownWrapper);
+
+                    // Mobile Accordion
+                    const mobWrapper = document.createElement('div');
+                    mobWrapper.className = "py-2";
+                    mobWrapper.innerHTML = `
+                        <button class="w-full flex justify-between items-center text-sm font-bold text-[#204382] py-1">
+                            <span>${item.label}</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="hidden pl-4 pt-2 space-y-2 border-l-2 border-blue-100 mt-1">
+                            ${item.children.map(c => `<a href="${c.link}" class="block text-xs text-slate-600 hover:text-elcardo-red py-1 mob-link">${c.label}</a>`).join('')}
+                        </div>
+                    `;
+                    const mobBtn = mobWrapper.querySelector('button');
+                    const mobSub = mobWrapper.querySelector('div');
+                    mobBtn.addEventListener('click', () => {
+                        mobSub.classList.toggle('hidden');
+                    });
+                    mobWrapper.querySelectorAll('.mob-link').forEach(link => {
+                        link.addEventListener('click', () => document.getElementById('mobile-nav-drawer').classList.add('hidden'));
+                    });
+                    mobContainer.appendChild(mobWrapper);
+
+                } else {
+                    // Standard Desktop Link
+                    const a = document.createElement('a');
+                    a.href = item.link;
+                    a.className = "text-[#204382] hover:text-elcardo-red font-semibold text-[14.5px] transition py-6 relative after:content-[''] after:absolute after:bottom-4 after:left-0 after:w-0 after:h-0.5 after:bg-elcardo-red hover:after:w-full after:transition-all";
+                    a.textContent = item.label;
+                    deskContainer.appendChild(a);
+
+                    // Standard Mobile Link
+                    const mobA = document.createElement('a');
+                    mobA.href = item.link;
+                    mobA.className = "block py-2.5 text-sm font-bold text-[#204382] hover:text-elcardo-red";
+                    mobA.textContent = item.label;
+                    mobA.addEventListener('click', () => {
+                        document.getElementById('mobile-nav-drawer').classList.add('hidden');
+                    });
+                    mobContainer.appendChild(mobA);
+                }
             });
+
+            // Initialize Search Modal
+            initSearchModal();
+        }
+
+        /**
+         * Search Modal Engine
+         */
+        function initSearchModal() {
+            const searchBtn = document.getElementById('header-search-btn');
+            const searchModal = document.getElementById('search-modal');
+            const searchClose = document.getElementById('search-modal-close');
+            const searchInput = document.getElementById('site-search-input');
+            const resultsBox = document.getElementById('search-results-box');
+
+            if (!searchBtn || !searchModal) return;
+
+            searchBtn.onclick = () => {
+                searchModal.classList.remove('hidden');
+                searchInput.focus();
+            };
+
+            searchClose.onclick = () => {
+                searchModal.classList.add('hidden');
+            };
+
+            searchModal.onclick = (e) => {
+                if (e.target === searchModal) searchModal.classList.add('hidden');
+            };
+
+            searchInput.oninput = (e) => {
+                const query = e.target.value.trim().toLowerCase();
+                if (!query) {
+                    resultsBox.innerHTML = `<p class="text-slate-400 text-center py-4">Type to search across all products, gate solutions, color swatches, and factory standards.</p>`;
+                    return;
+                }
+
+                const data = getSiteData();
+                const matchedProducts = (data.products || []).filter(p => 
+                    p.name.toLowerCase().includes(query) || 
+                    (p.description && p.description.toLowerCase().includes(query)) ||
+                    (p.code && p.code.toLowerCase().includes(query)) ||
+                    (p.categoryName && p.categoryName.toLowerCase().includes(query))
+                );
+
+                const matchedColors = ((data.colorSelector && data.colorSelector.colors) || []).filter(c =>
+                    c.name.toLowerCase().includes(query) || c.code.toLowerCase().includes(query)
+                );
+
+                const matchedBranches = (data.branches || []).filter(b =>
+                    b.name.toLowerCase().includes(query) || b.address.toLowerCase().includes(query)
+                );
+
+                if (!matchedProducts.length && !matchedColors.length && !matchedBranches.length) {
+                    resultsBox.innerHTML = `<p class="text-rose-500 text-center py-4 font-semibold">No results found for "${query}". Try searching "roller door", "gate", "green", or "kandy".</p>`;
+                    return;
+                }
+
+                let html = '';
+
+                if (matchedProducts.length) {
+                    html += `<div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider mb-1">Products & Solutions (${matchedProducts.length})</div>`;
+                    matchedProducts.forEach(p => {
+                        html += `
+                            <a href="#products" class="search-item flex items-center gap-3 p-2 hover:bg-blue-50 rounded-xl transition cursor-pointer">
+                                <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover border border-slate-200">
+                                <div>
+                                    <div class="font-bold text-[#1a3b70] text-xs">${p.name} <span class="text-elcardo-red text-[10px]">(${p.code})</span></div>
+                                    <div class="text-[11px] text-slate-500 line-clamp-1">${p.description}</div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                }
+
+                if (matchedColors.length) {
+                    html += `<div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider mt-3 mb-1">Colorbond Finishes (${matchedColors.length})</div>`;
+                    matchedColors.forEach(c => {
+                        html += `
+                            <a href="#colors" class="search-item flex items-center gap-3 p-2 hover:bg-blue-50 rounded-xl transition cursor-pointer">
+                                <span class="w-6 h-6 rounded-lg border border-slate-300" style="background-color: ${c.hex}"></span>
+                                <div>
+                                    <div class="font-bold text-[#1a3b70] text-xs">${c.name}</div>
+                                    <div class="text-[10px] text-slate-500">${c.code} (${c.hex})</div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                }
+
+                if (matchedBranches.length) {
+                    html += `<div class="font-bold text-slate-400 uppercase text-[10px] tracking-wider mt-3 mb-1">Branch Network (${matchedBranches.length})</div>`;
+                    matchedBranches.forEach(b => {
+                        html += `
+                            <a href="#branches" class="search-item flex items-center gap-3 p-2 hover:bg-blue-50 rounded-xl transition cursor-pointer">
+                                <i class="fa-solid fa-location-dot text-elcardo-red text-base"></i>
+                                <div>
+                                    <div class="font-bold text-[#1a3b70] text-xs">${b.name}</div>
+                                    <div class="text-[10px] text-slate-500">${b.address} - ${b.phone}</div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                }
+
+                resultsBox.innerHTML = html;
+
+                resultsBox.querySelectorAll('.search-item').forEach(el => {
+                    el.addEventListener('click', () => {
+                        searchModal.classList.add('hidden');
+                    });
+                });
+            };
         }
 
         /**
