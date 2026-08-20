@@ -4,7 +4,7 @@
  * 100% Client-Side Editable via LocalStorage
  */
 
-const STORAGE_KEY = 'shutter2000_v6_infinite_design';
+const STORAGE_KEY = 'shutter2000_v7_infinite_design_contact';
 const PIN_STORAGE_KEY = 'shutter2000_admin_pin';
 const DEFAULT_PIN = '2000';
 
@@ -507,8 +507,8 @@ const DEFAULT_DATA = {
         name: "Infinite Design",
         text: "Website Designed & Developed by Infinite Design",
         facebook: "https://www.facebook.com/profile.php?id=100082101311247",
-        whatsapp: "+94 77 440 2271",
-        whatsappRaw: "94774402271"
+        whatsapp: "+94 78 971 4912",
+        whatsappRaw: "94789714912"
     }
 };
 
