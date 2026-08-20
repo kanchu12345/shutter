@@ -326,13 +326,37 @@
                                     <label class="block text-xs text-slate-400 mb-1">Experience Years (e.g. 24+)</label>
                                     <input type="text" id="abt-expyears" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
                                 </div>
-                                <div>
-                                    <label class="block text-xs text-slate-400 mb-1">Image 1 URL</label>
-                                    <input type="url" id="abt-img1" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                <div class="space-y-1.5">
+                                    <label class="block text-xs font-bold text-slate-300">About Image 1 (Factory / Plant)</label>
+                                    <div class="flex gap-3 items-start bg-slate-900 p-3 rounded-xl border border-slate-700">
+                                        <div class="w-16 h-16 rounded-lg bg-slate-950 border border-slate-700 overflow-hidden flex-shrink-0">
+                                            <img id="abt-preview1" src="images/factory_plant.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                                        </div>
+                                        <div class="flex-grow space-y-1.5">
+                                            <input type="text" id="abt-img1" placeholder="images/factory_plant.jpg or https://..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                                            <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1 rounded-md text-[11px] font-bold transition shadow">
+                                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                <span>Upload Image 1</span>
+                                                <input type="file" id="abt-file1" accept="image/*" class="hidden">
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="block text-xs text-slate-400 mb-1">Image 2 URL</label>
-                                    <input type="url" id="abt-img2" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white">
+                                <div class="space-y-1.5">
+                                    <label class="block text-xs font-bold text-slate-300">About Image 2 (Assembly / Fleet)</label>
+                                    <div class="flex gap-3 items-start bg-slate-900 p-3 rounded-xl border border-slate-700">
+                                        <div class="w-16 h-16 rounded-lg bg-slate-950 border border-slate-700 overflow-hidden flex-shrink-0">
+                                            <img id="abt-preview2" src="images/installation_crew.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                                        </div>
+                                        <div class="flex-grow space-y-1.5">
+                                            <input type="text" id="abt-img2" placeholder="images/installation_crew.jpg or https://..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                                            <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-2.5 py-1 rounded-md text-[11px] font-bold transition shadow">
+                                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                <span>Upload Image 2</span>
+                                                <input type="file" id="abt-file2" accept="image/*" class="hidden">
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -556,10 +580,10 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- SLIDE EDIT/ADD MODAL                           -->
+    <!-- SLIDE EDIT/ADD MODAL (With File Upload & Live Preview) -->
     <!-- ============================================== -->
     <div id="slide-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div class="flex justify-between items-center pb-2 border-b border-slate-800">
                 <h3 class="font-bold text-white text-sm" id="slide-modal-title">Edit Slide</h3>
                 <button class="modal-close text-slate-400 hover:text-white" data-modal="slide-modal"><i class="fa-solid fa-xmark"></i></button>
@@ -582,10 +606,28 @@
                     <label class="block text-xs text-slate-400 mb-1">Paragraph Description (Optional)</label>
                     <textarea id="modal-slide-desc" rows="2" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
                 </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Background Image URL</label>
-                    <input type="url" id="modal-slide-img" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+
+                <!-- Slide Image Uploader Component -->
+                <div class="space-y-1.5 pt-1">
+                    <label class="block text-xs font-bold text-slate-300">Background Image (Upload Image File or Enter URL)</label>
+                    <div class="flex gap-3 items-start bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="w-20 h-16 rounded-lg bg-slate-900 border border-slate-700 overflow-hidden flex-shrink-0 relative group">
+                            <img id="modal-slide-preview" src="images/hero_slide1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                        </div>
+                        <div class="flex-grow space-y-2">
+                            <input type="text" id="modal-slide-img" required placeholder="images/hero_slide1.jpg or https://..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shadow">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Upload Image File</span>
+                                    <input type="file" id="modal-slide-file" accept="image/*" class="hidden">
+                                </label>
+                                <button type="button" class="text-[11px] text-slate-400 hover:text-rose-400" onclick="document.getElementById('modal-slide-img').value=''; document.getElementById('modal-slide-preview').src='https://via.placeholder.com/150?text=No+Image';">Clear</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs text-slate-400 mb-1">Button 1 Text</label>
@@ -615,7 +657,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- PRODUCT EDIT/ADD MODAL                         -->
+    <!-- PRODUCT EDIT/ADD MODAL (With File Upload & Live Preview) -->
     <!-- ============================================== -->
     <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar">
@@ -655,10 +697,28 @@
                         <input type="text" id="modal-prod-catname" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Image URL</label>
-                    <input type="url" id="modal-prod-img" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+
+                <!-- Product Image Uploader Component -->
+                <div class="space-y-1.5 pt-1">
+                    <label class="block text-xs font-bold text-slate-300">Product Photo (Upload Image File or Enter URL)</label>
+                    <div class="flex gap-3 items-start bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="w-20 h-20 rounded-lg bg-slate-900 border border-slate-700 overflow-hidden flex-shrink-0 relative group">
+                            <img id="modal-prod-preview" src="images/roller_door_standard.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                        </div>
+                        <div class="flex-grow space-y-2">
+                            <input type="text" id="modal-prod-img" required placeholder="images/roller_door_standard.jpg or https://..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shadow">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Upload Image File</span>
+                                    <input type="file" id="modal-prod-file" accept="image/*" class="hidden">
+                                </label>
+                                <button type="button" class="text-[11px] text-slate-400 hover:text-rose-400" onclick="document.getElementById('modal-prod-img').value=''; document.getElementById('modal-prod-preview').src='https://via.placeholder.com/150?text=No+Image';">Clear</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
                     <label class="block text-xs text-slate-400 mb-1">Description</label>
                     <textarea id="modal-prod-desc" rows="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"></textarea>
@@ -680,6 +740,121 @@
                 <div class="pt-3 flex justify-end gap-2">
                     <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="product-modal">Cancel</button>
                     <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- GALLERY ADD/EDIT MODAL (With File Upload & Live Preview) -->
+    <!-- ============================================== -->
+    <div id="gallery-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="font-bold text-white text-sm" id="gal-modal-title">Add Project Photo</h3>
+                <button class="modal-close text-slate-400 hover:text-white" data-modal="gallery-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-gallery-modal" class="space-y-3">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Project Title</label>
+                    <input type="text" id="modal-gal-title" required placeholder="e.g. Modern Residential Villa Roller Garage" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Category</label>
+                        <select id="modal-gal-cat" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                            <option value="Residential">Residential</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Location</label>
+                        <input type="text" id="modal-gal-loc" placeholder="e.g. Colombo 07 & Ratmalana" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                </div>
+
+                <!-- Gallery Image Uploader -->
+                <div class="space-y-1.5 pt-1">
+                    <label class="block text-xs font-bold text-slate-300">Project Image (Upload File or Enter URL)</label>
+                    <div class="flex gap-3 items-start bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="w-20 h-20 rounded-lg bg-slate-900 border border-slate-700 overflow-hidden flex-shrink-0 relative group">
+                            <img id="modal-gal-preview" src="images/hero_slide1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                        </div>
+                        <div class="flex-grow space-y-2">
+                            <input type="text" id="modal-gal-img" required placeholder="images/filename.jpg or https://..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shadow">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Upload Image File</span>
+                                    <input type="file" id="modal-gal-file" accept="image/*" class="hidden">
+                                </label>
+                                <button type="button" class="text-[11px] text-slate-400 hover:text-rose-400" onclick="document.getElementById('modal-gal-img').value=''; document.getElementById('modal-gal-preview').src='https://via.placeholder.com/150?text=No+Image';">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="gallery-modal">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Image</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- COLOR PALETTE ADD MODAL (With File Upload & Live Preview) -->
+    <!-- ============================================== -->
+    <div id="color-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="font-bold text-white text-sm" id="color-modal-title">Add Color Finish</h3>
+                <button class="modal-close text-slate-400 hover:text-white" data-modal="color-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-color-modal" class="space-y-3">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Color Finish Name</label>
+                    <input type="text" id="modal-color-name" required placeholder="e.g. Caulfield / Dark Green" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Color Code (RAL)</label>
+                        <input type="text" id="modal-color-code" required placeholder="e.g. RAL-6005" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Hex Color Code</label>
+                        <div class="flex items-center gap-2">
+                            <input type="color" id="modal-color-hex-picker" value="#1e3f20" class="w-8 h-8 rounded border-0 bg-transparent cursor-pointer">
+                            <input type="text" id="modal-color-hex" required value="#1e3f20" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swatch Image Uploader -->
+                <div class="space-y-1.5 pt-1">
+                    <label class="block text-xs font-bold text-slate-300">Swatch Texture Image (Optional)</label>
+                    <div class="flex gap-3 items-start bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="w-16 h-16 rounded-lg bg-slate-900 border border-slate-700 overflow-hidden flex-shrink-0 relative group">
+                            <img id="modal-color-preview" src="images/swatch_green.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Swatch'">
+                        </div>
+                        <div class="flex-grow space-y-2">
+                            <input type="text" id="modal-color-img" placeholder="images/swatch_green.jpg or https://..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                            <div class="flex items-center gap-2">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shadow">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Upload Swatch File</span>
+                                    <input type="file" id="modal-color-file" accept="image/*" class="hidden">
+                                </label>
+                                <button type="button" class="text-[11px] text-slate-400 hover:text-rose-400" onclick="document.getElementById('modal-color-img').value=''; document.getElementById('modal-color-preview').src='https://via.placeholder.com/150?text=Swatch';">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" class="modal-close px-4 py-2 bg-slate-800 text-slate-300 text-xs rounded-xl" data-modal="color-modal">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-elcardo-red text-white text-xs font-bold rounded-xl shadow">Save Color</button>
                 </div>
             </form>
         </div>
@@ -709,6 +884,7 @@
             initSidebar();
             initFormListeners();
             initModals();
+            initImageUploaders();
         });
 
         function checkAuth() {
@@ -799,7 +975,9 @@
             document.getElementById('abt-desc2').value = abt.desc2 || '';
             document.getElementById('abt-expyears').value = abt.experienceYears || '';
             document.getElementById('abt-img1').value = abt.image1 || '';
+            document.getElementById('abt-preview1').src = abt.image1 || 'images/factory_plant.jpg';
             document.getElementById('abt-img2').value = abt.image2 || '';
+            document.getElementById('abt-preview2').src = abt.image2 || 'images/installation_crew.jpg';
             document.getElementById('abt-checklist').value = (abt.checklist || []).join('\n');
 
             // Contact & CTA
@@ -998,6 +1176,55 @@
             openSlideModal(null);
         });
 
+        function initImageUploaders() {
+            // Slide Image Uploader
+            attachImageUploader('modal-slide-file', 'modal-slide-img', 'modal-slide-preview');
+            // Product Image Uploader
+            attachImageUploader('modal-prod-file', 'modal-prod-img', 'modal-prod-preview');
+            // About Us Images Uploader
+            attachImageUploader('abt-file1', 'abt-img1', 'abt-preview1');
+            attachImageUploader('abt-file2', 'abt-img2', 'abt-preview2');
+            // Gallery Image Uploader
+            attachImageUploader('modal-gal-file', 'modal-gal-img', 'modal-gal-preview');
+            // Color Swatch Uploader
+            attachImageUploader('modal-color-file', 'modal-color-img', 'modal-color-preview');
+
+            // Color Hex Picker Sync
+            const hexPicker = document.getElementById('modal-color-hex-picker');
+            const hexInput = document.getElementById('modal-color-hex');
+            if (hexPicker && hexInput) {
+                hexPicker.addEventListener('input', (e) => hexInput.value = e.target.value);
+                hexInput.addEventListener('input', (e) => hexPicker.value = e.target.value);
+            }
+        }
+
+        function attachImageUploader(fileInputId, textInputId, previewImgId) {
+            const fileInput = document.getElementById(fileInputId);
+            const textInput = document.getElementById(textInputId);
+            const previewImg = document.getElementById(previewImgId);
+
+            if (fileInput && textInput) {
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    // Read local file as Data URL (Base64)
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const base64Data = event.target.result;
+                        textInput.value = base64Data;
+                        if (previewImg) previewImg.src = base64Data;
+                        showToast("Image uploaded from device successfully!");
+                    };
+                    reader.readAsDataURL(file);
+                });
+
+                textInput.addEventListener('input', () => {
+                    if (previewImg) previewImg.src = textInput.value || 'https://via.placeholder.com/150?text=No+Image';
+                });
+            }
+        }
+
         function openSlideModal(s) {
             const modal = document.getElementById('slide-modal');
             document.getElementById('slide-id').value = s ? s.id : '';
@@ -1006,6 +1233,7 @@
             document.getElementById('modal-slide-sub').value = s ? s.subtitle : '';
             document.getElementById('modal-slide-desc').value = s ? (s.description || '') : '';
             document.getElementById('modal-slide-img').value = s ? s.bgImage : '';
+            document.getElementById('modal-slide-preview').src = s ? (s.bgImage || 'images/hero_slide1.jpg') : 'images/hero_slide1.jpg';
             document.getElementById('modal-slide-cta1text').value = s ? (s.cta1Text || 'Explore More') : 'Explore More';
             document.getElementById('modal-slide-cta1link').value = s ? (s.cta1Link || '#products') : '#products';
             document.getElementById('modal-slide-cta2text').value = s ? (s.cta2Text || 'Get In Touch') : 'Get In Touch';
@@ -1043,9 +1271,6 @@
             showToast("Slide saved successfully!");
         });
 
-        /**
-         * Render Products Admin
-         */
         function renderAdminProducts(products) {
             const list = document.getElementById('products-list');
             document.getElementById('side-count-products').textContent = products.length;
@@ -1101,6 +1326,7 @@
             document.getElementById('modal-prod-cat').value = p ? p.category : 'roller-doors';
             document.getElementById('modal-prod-catname').value = p ? p.categoryName : 'Roller Doors';
             document.getElementById('modal-prod-img').value = p ? p.image : '';
+            document.getElementById('modal-prod-preview').src = p ? (p.image || 'images/roller_door_standard.jpg') : 'images/roller_door_standard.jpg';
             document.getElementById('modal-prod-desc').value = p ? p.description : '';
             document.getElementById('modal-prod-warranty').value = p ? p.warranty : '10-Year Panel / 5-Year Motor';
             document.getElementById('modal-prod-motor').value = p ? p.motorSpecs : '';
@@ -1139,9 +1365,6 @@
             showToast("Product saved successfully!");
         });
 
-        /**
-         * Colors Admin
-         */
         function renderAdminColors(colors) {
             const list = document.getElementById('colors-list');
             list.innerHTML = '';
@@ -1177,23 +1400,32 @@
         }
 
         document.getElementById('btn-add-color').addEventListener('click', () => {
-            const name = prompt("Enter Color Name (e.g. Caulfield Green):");
-            if (!name) return;
-            const code = prompt("Enter Color Code (e.g. RAL-6005):", "RAL-XXXX");
-            const hex = prompt("Enter Hex Code (e.g. #1e3f20):", "#1e3f20");
-            const swatchImg = prompt("Enter Swatch Image URL (Optional):", "");
+            const modal = document.getElementById('color-modal');
+            document.getElementById('modal-color-name').value = '';
+            document.getElementById('modal-color-code').value = 'RAL-';
+            document.getElementById('modal-color-hex').value = '#1e3f20';
+            document.getElementById('modal-color-hex-picker').value = '#1e3f20';
+            document.getElementById('modal-color-img').value = '';
+            document.getElementById('modal-color-preview').src = 'https://via.placeholder.com/150?text=Swatch';
+            modal.classList.remove('hidden');
+        });
+
+        document.getElementById('form-color-modal').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('modal-color-name').value.trim();
+            const code = document.getElementById('modal-color-code').value.trim();
+            const hex = document.getElementById('modal-color-hex').value.trim();
+            const swatchImg = document.getElementById('modal-color-img').value.trim();
 
             const data = getSiteData();
             if (!data.colorSelector) data.colorSelector = { colors: [] };
             data.colorSelector.colors.push({ name, code, hex, swatchImg });
             saveSiteData(data);
+            document.getElementById('color-modal').classList.add('hidden');
             renderAdminColors(data.colorSelector.colors);
-            showToast("Color added!");
+            showToast("Color added successfully!");
         });
 
-        /**
-         * Branches Admin
-         */
         function renderAdminBranches(branches) {
             const list = document.getElementById('branches-list');
             document.getElementById('side-count-branches').textContent = branches.length;
@@ -1243,9 +1475,6 @@
             showToast("Branch added!");
         });
 
-        /**
-         * Gallery Admin
-         */
         function renderAdminGallery(gallery) {
             const list = document.getElementById('gallery-list');
             document.getElementById('side-count-gallery').textContent = gallery.length;
@@ -1281,17 +1510,28 @@
         }
 
         document.getElementById('btn-add-gallery').addEventListener('click', () => {
-            const title = prompt("Enter Project Title / Landmark:");
-            if (!title) return;
-            const category = prompt("Enter Category (Commercial / Industrial / Residential / Smart Systems):", "Commercial");
-            const location = prompt("Enter Location:", "Colombo");
-            const image = prompt("Enter Image URL:", "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=900&q=80");
+            const modal = document.getElementById('gallery-modal');
+            document.getElementById('modal-gal-title').value = '';
+            document.getElementById('modal-gal-cat').value = 'Commercial';
+            document.getElementById('modal-gal-loc').value = 'Colombo';
+            document.getElementById('modal-gal-img').value = 'images/hero_slide1.jpg';
+            document.getElementById('modal-gal-preview').src = 'images/hero_slide1.jpg';
+            modal.classList.remove('hidden');
+        });
+
+        document.getElementById('form-gallery-modal').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('modal-gal-title').value.trim();
+            const category = document.getElementById('modal-gal-cat').value;
+            const location = document.getElementById('modal-gal-loc').value.trim();
+            const image = document.getElementById('modal-gal-img').value.trim();
 
             const data = getSiteData();
             data.gallery.push({ id: 'gal-' + Date.now(), title, category, location, image });
             saveSiteData(data);
+            document.getElementById('gallery-modal').classList.add('hidden');
             renderAdminGallery(data.gallery);
-            showToast("Gallery photo added!");
+            showToast("Gallery photo added successfully!");
         });
 
         /**
